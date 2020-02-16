@@ -1,12 +1,26 @@
 import { Component } from '@angular/core';
 import * as $ from 'jquery';
 
+class Person {
+  name: string;
+  lastname: string;
+  dateOfBirth: string;
+  phoneNumber: string;
+  gender: string;
+  education: string;
+  isSmoking: string;
+  isAgreed: string;
+  correct: boolean;
+} 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  person: Person = new Person();
+  tableData: Person[] = [];
   name: string = '';
   lastname: string = '';
   dateOfBirth: string = '';

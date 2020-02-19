@@ -10,7 +10,6 @@ class Person {
   education: string;
   isSmoking: string;
   isAgreed: string;
-  correct: boolean;
 }
 
 @Component({
@@ -20,14 +19,14 @@ class Person {
 })
 export class AppComponent {
   person: Person = new Person();
-  tableData: Person[] = [];
+  correct: boolean;
 
   startChecks() {
     // Reset all errors
     $(".msg").css("display", "none");
     $(".box").css("borderColor", "initial");
     $('#checkMsg').css('visibility', 'hidden');
-    this.person.correct = true;
+    this.correct = true;
 
     // get all Form data - all fields
     this.person.name = $("#firstname").val().toString();
@@ -55,7 +54,7 @@ export class AppComponent {
       this.checkElement('','.agree');
         $('.icon-question').css('color', 'red');
     }
-    if (this.person.correct) {
+    if (this.correct) {
         $('.msg-ok').css('visibility', 'visible');
     }
   }
@@ -65,7 +64,7 @@ export class AppComponent {
     if (el === '') {
         $(cls + '-err').css('display', 'flex')
         $(cls).css('borderColor', 'red')
-        this.person.correct = false;
+        this.correct = false;
     }
   };
 

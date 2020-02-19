@@ -37,3 +37,10 @@
 .msg-ok {
   visibility: hidden;
 }
+
+.table-titles {
+  text-align: left;
+  justify-content: space-around;
+  border: 1px solid #ccc;
+  background-color: azure;
+}

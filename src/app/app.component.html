@@ -9,16 +9,16 @@
           </div>
       </div>
 
-      <div class="container text-left form">
+      <div class="container form">
           <div class="row">
               <div class="col-xs-4 text-right">First Name </div>
-              <input class="col-xs-4 name box" type="text" id="firstname" placeholder="Enter Name">
-              <div class="col-xs-4 text-left name-err msg">Please enter name</div>
+              <input class="col-xs-4 firstName box" type="text" id="firstName" placeholder="Enter first name">
+              <div class="col-xs-4 text-left firstName-err msg">Please enter name</div>
           </div>
           <div class="row">
               <div class="col-xs-4 text-right">Last Name</div>
-              <input class="col-xs-4 data lastname box" type="text" id="lastname" placeholder="Enter Last name">
-              <div class="col-xs-4 text-left lastname-err msg">Please enter Last name</div>
+              <input class="col-xs-4 data lastName box" type="text" id="lastName" placeholder="Enter last name">
+              <div class="col-xs-4 text-left lastName-err msg">Please enter last name</div>
           </div>
           <div class="row">
               <div class="col-xs-4 text-right">Date of birth </div>
@@ -33,15 +33,15 @@
           <div class="row">
               <div class="col-xs-4 text-right" id="gender">Gender </div>
               <div class="col-xs-4 text-left gender">
-                  <input class="data" type="radio" id="genderMale" name="gender" value="male"> Male
-                  <input class="data" type="radio" id="genderFemale" name="gender" value="female"> Female
+                  <input class="data" type="radio" id="genderMale" name="gender" value="1"> Male
+                  <input class="data" type="radio" id="genderFemale" name="gender" value="2"> Female
               </div>
               <div class="col-xs-4 text-left gender-err msg">Please enter gender</div>
           </div>
           <div class="row">
               <div class="col-xs-4 text-right">Education</div>
               <select id="education" class="col-xs-4 data education box">
-                  <option ></option>
+                  <option value="0"></option>
                   <option value="1">None</option>
                   <option value="2">Secondary education</option>
                   <option value="3">Post-secondary</option>
@@ -63,16 +63,22 @@
                   <span class="glyphicon glyphicon-question-sign icon-question"></span>
               </div>
               <div class="col-xs-4 text-left">
-              <label for="agreement"><input class="agree data" id="agreement" type="checkbox"> Agree to terms</label>
+                <label for="agreement">
+                    <input class="agree data" id="agreement" type="checkbox">
+                    Agree to terms
+                </label>
               </div>
               <div class="col-xs-4 text-left agree-err msg">Please agree to terms</div>
           </div>
           <div class="row">
-              <div class="msg-ok" id="checkMsg">Check completed succsessfully</div>
+              <div class="msg-ok" id="checkMsg">Check completed successfully</div>
           </div>
-          <button (click)="startChecks()" class="submit btn btn-default btn-lg" type="submit" id="submitBtn">
+          <button (click)="startChecks()" class="submit btn btn-primary btn-md" type="submit" id="submitBtn">
               <span class="glyphicon glyphicon-user"></span> Submit
           </button>
       </div>
   </div>
+</div>
+<div>
+  <app-person-list></app-person-list>
 </div>

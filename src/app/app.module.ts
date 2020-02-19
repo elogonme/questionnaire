@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { TabledataComponent } from './tabledata/tabledata.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TabledataComponent,
   ],
   imports: [
     BrowserModule

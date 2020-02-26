@@ -1,9 +1,13 @@
 <div class="main">
-  <div class="container text-center">
+  <div class="container text-center main-form">
       <div class="row">
-          <div class="col-xs-4 text-right">
-              <span class="icon-1 glyphicon glyphicon-list-alt"></span>
-          </div>
+          <!-- <div class="col-xs-4 text-right">
+              <span class="icon-1 glyphicon glyphicon-book"></span>
+          </div> -->
+          <i class="bi bi-alert-triangle text-success"></i>
+          <!-- <svg class="bi bi-book text-success" width="32" height="32" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+
+          </svg> -->
           <div class="col-xs-4 text-left">
               <h1>Questionnaire</h1>
           </div>
@@ -12,35 +16,36 @@
       <div class="container form">
           <div class="row">
               <div class="col-xs-4 text-right">First Name </div>
-              <input class="col-xs-4 firstName box" type="text" id="firstName" placeholder="Enter first name">
-              <div class="col-xs-4 text-left firstName-err msg">Please enter name</div>
+              <input [(ngModel)]="person.firstName" class="col-xs-4 firstName box" type="text" id="firstName" placeholder="Enter first name" [ngClass]="{'err-input': !isFistNameValid}">
+              <!--<div class="col-xs-4 text-left firstName-err msg">Please enter name</div>-->
+              <div class="col-xs-4 text-left firstName-err msg" [ngClass]="{'err-message': !isFistNameValid}">Please enter name</div>
           </div>
           <div class="row">
               <div class="col-xs-4 text-right">Last Name</div>
-              <input class="col-xs-4 data lastName box" type="text" id="lastName" placeholder="Enter last name">
-              <div class="col-xs-4 text-left lastName-err msg">Please enter last name</div>
+              <input [(ngModel)]="person.lastName" class="col-xs-4 data lastName box" type="text" id="lastName" placeholder="Enter last name" [ngClass]="{'err-input': !isLastNameValid}">
+              <div class="col-xs-4 text-left lastName-err msg" [ngClass]="{'err-message': !isLastNameValid}">Please enter last name</div>
           </div>
           <div class="row">
               <div class="col-xs-4 text-right">Date of birth </div>
-              <input class="col-xs-4 data dob box" type="date" id="dob" placeholder="Enter DOB">
-              <div class="col-xs-4 text-left dob-err msg">Please enter Date of Birth</div>
+              <input [(ngModel)]="person.dateOfBirth" class="col-xs-4 data dob box" type="date" id="dob" placeholder="Enter DOB" [ngClass]="{'err-input': !isDoBValid}">
+              <div class="col-xs-4 text-left dob-err msg" [ngClass]="{'err-message': !isDoBValid}">Please enter Date of Birth</div>
           </div>
           <div class="row">
               <div class="col-xs-4 text-right">Phone Number</div>
-              <input class="col-xs-4 data phone box" type="tel" id="phone" placeholder="Enter Phone No">
-              <div class="col-xs-4 text-left phone-err msg">Please enter Phone number</div>
+              <input [(ngModel)]="person.phoneNumber" class="col-xs-4 data phone box" type="tel" id="phone" placeholder="Enter Phone No" [ngClass]="{'err-input': !isPhoneValid}">
+              <div class="col-xs-4 text-left phone-err msg" [ngClass]="{'err-message': !isPhoneValid}">Please enter Phone number</div>
           </div>
           <div class="row">
               <div class="col-xs-4 text-right" id="gender">Gender </div>
-              <div class="col-xs-4 text-left gender">
-                  <input class="data" type="radio" id="genderMale" name="gender" value="1"> Male
-                  <input class="data" type="radio" id="genderFemale" name="gender" value="2"> Female
+              <div class="col-xs-4 text-left gender" [ngClass]="{'err-input': !isGenderValid}">
+                  <input [(ngModel)]="person.gender" class="data" type="radio" id="genderMale" name="gender" value="1"> Male
+                  <input [(ngModel)]="person.gender" class="data" type="radio" id="genderFemale" name="gender" value="2"> Female
               </div>
-              <div class="col-xs-4 text-left gender-err msg">Please enter gender</div>
+              <div class="col-xs-4 text-left gender-err msg" [ngClass]="{'err-message': !isGenderValid}">Please enter gender</div>
           </div>
           <div class="row">
               <div class="col-xs-4 text-right">Education</div>
-              <select id="education" class="col-xs-4 data education box">
+              <select id="education" class="col-xs-4 data education box" [(ngModel)]="person.education" [ngClass]="{'err-input': !isEducationValid}">
                   <option value="0"></option>
                   <option value="1">None</option>
                   <option value="2">Secondary education</option>
@@ -48,15 +53,15 @@
                   <option value="4">Bachelor's degree</option>
                   <option value="5">Master's degree</option>
               </select>
-              <div class="col-xs-4 text-left education-err msg">Please select education</div>
+              <div class="col-xs-4 text-left education-err msg" [ngClass]="{'err-message': !isEducationValid}">Please select education</div>
           </div>
           <div class="row">
               <div class="col-xs-4 text-right">Smoking?</div>
-              <div class="col-xs-4 text-left smoking">
-                  <input class="data" type="radio" name="smoking" id="smokingYes" value="yes"> Yes
-                  <input class="data" type="radio" name="smoking" id="smokingNo" value="no"> No
+              <div class="col-xs-4 text-left smoking" [ngClass]="{'err-input': !isSmokingValid}">
+                  <input [(ngModel)]="person.isSmoking" class="data" type="radio" name="smoking" id="smokingYes" value="yes"> Yes
+                  <input [(ngModel)]="person.isSmoking" class="data" type="radio" name="smoking" id="smokingNo" value="no"> No
               </div>
-              <div class="col-xs-4 text-left smoking-err msg">Please choose Yes/No</div>
+              <div class="col-xs-4 text-left smoking-err msg" [ngClass]="{'err-message': !isSmokingValid}">Please choose Yes/No</div>
           </div>
           <div class="row">
               <div class="col-xs-4 text-right">
@@ -64,14 +69,14 @@
               </div>
               <div class="col-xs-4 text-left">
                 <label for="agreement">
-                    <input class="agree data" id="agreement" type="checkbox">
+                    <input [(ngModel)]="person.isAgreed" class="agree data" id="agreement" type="checkbox">
                     Agree to terms
                 </label>
               </div>
-              <div class="col-xs-4 text-left agree-err msg">Please agree to terms</div>
+              <div class="col-xs-4 text-left agree-err msg" [ngClass]="{'err-message': !isAgreedValid}">Please agree to terms</div>
           </div>
           <div class="row">
-              <div class="msg-ok" id="checkMsg">Check completed successfully</div>
+              <div class="msg-ok" id="checkMsg" [ngClass]="{'msg-ok-on': correct}">Check completed successfully</div>
           </div>
           <button (click)="startChecks()" class="submit btn btn-primary btn-md" type="submit" id="submitBtn">
               <span class="glyphicon glyphicon-user"></span> Submit
@@ -80,5 +85,5 @@
   </div>
 </div>
 <div>
-  <app-person-list></app-person-list>
+  <app-person-list [my_input]="ararar"></app-person-list>
 </div>

@@ -9,6 +9,7 @@
 .msg {
   color: red;
   display: none;
+  padding-left: 10px;
 }
 
 .container {
@@ -38,9 +39,29 @@
   visibility: hidden;
 }
 
+.msg-ok-on {
+  visibility: visible;
+}
+
 .table-titles {
   text-align: left;
   justify-content: space-around;
   border: 1px solid #ccc;
   background-color: azure;
+}
+
+.main-form {
+  width: 600px;
+}
+
+.err-off {
+  display: none;
+}
+
+.err-message {
+  display: flex;
+}
+
+.err-input {
+  border: 1px solid red;
 }

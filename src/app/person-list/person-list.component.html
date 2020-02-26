@@ -12,20 +12,23 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>
-        <button class="btn btn-outline-secondary btn-sm">Up</button>
-        <button class="btn btn-outline-success btn-sm">Down</button>
-        <button class="btn btn-outline-danger btn-sm">Del</button>
-        <button class="btn btn-primary btn-sm">Update</button>
-      </td>
-    </tr>
+    <ng-container *ngFor="let item of my_input">
+      <tr >
+        <td>{{item}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <button class="btn btn-outline-secondary btn-sm">Up</button>
+          <button class="btn btn-outline-success btn-sm">Down</button>
+          <button class="btn btn-outline-danger btn-sm">Del</button>
+          <button class="btn btn-primary btn-sm">Update</button>
+        </td>
+      </tr>
+    </ng-container>
+
   </tbody>
 </table>

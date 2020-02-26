@@ -67,6 +67,9 @@ export class AppComponent {
   }
 
   private checkValidDate(field: string, data: Date): boolean {
+    if (data === undefined) {
+      return false;
+  }
     if (data.toString() === 'Invalid Date') {
         return false;
     }
@@ -74,6 +77,7 @@ export class AppComponent {
   }
 
   private checkNotNull(field: string, data: any | null): boolean {
+
     if (data === null) {
         return false;
     }

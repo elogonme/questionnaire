@@ -8,9 +8,7 @@ import { Person } from './models/person';
 })
 export class AppComponent {
   person: Person = new Person();
-  ararar: string[] = ['bb','cc','dd'];
   correct = false;
-  setClass: string;
 
   isFistNameValid = true;
   isLastNameValid = true;
@@ -23,11 +21,6 @@ export class AppComponent {
 
 
   startChecks() {
-    let a: Person[] = [];
-    let p2 = this.person.clone();
-    a.push(this.person);
-    a.push(p2);
-    a.push(this.person.clone());
 
     // Check all form data if all fields entered
     this.isFistNameValid = this.checkMinimumLength('firstName', this.person.firstName,  3);
@@ -55,7 +48,7 @@ export class AppComponent {
     if (data.length < minimumLength) {
         return false;
     }
-    this.setClass = 'err-off';
+
     return true;
   }
 

@@ -18,11 +18,6 @@
   margin-bottom: 0px;
 }
 
-.icon-1 {
-  font-size: 40px;
-  padding-top: 18px;
-}
-
 .col-xs-6 {
   padding-right: auto;
 }
@@ -37,21 +32,15 @@
 
 .msg-ok {
   visibility: hidden;
+  padding-bottom: 5px;
 }
 
 .msg-ok-on {
   visibility: visible;
 }
 
-.table-titles {
-  text-align: left;
-  justify-content: space-around;
-  border: 1px solid #ccc;
-  background-color: azure;
-}
-
 .main-form {
-  width: 600px;
+  width: 650px;
 }
 
 .err-off {
@@ -64,4 +53,26 @@
 
 .err-input {
   border: 1px solid red;
+}
+
+.material-icons {
+  font-size: 14px;
+}
+
+.icon-2 {
+  font-size: 20px;
+}
+
+.icon-1 {
+  font-size: 40px;
+  padding-top: 6px;
+  padding-right: 5px;
+}
+
+.heading {
+  justify-content: center;
+}
+
+.agree {
+  margin-bottom: 2px;
 }

@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PersonListComponent implements OnInit {
 
-  @Input() my_input: string[] = [];
+  @Input() passPersonData: string[] = [];
   constructor() { }
 
   ngOnInit(): void {

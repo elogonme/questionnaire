@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Person } from './models/person';
 
 @Component({
@@ -23,14 +23,14 @@ export class AppComponent {
   startChecks() {
 
     // Check all form data if all fields entered
-    this.isFistNameValid = this.checkMinimumLength('firstName', this.person.firstName,  3);
-    this.isLastNameValid = this.checkMinimumLength('lastName', this.person.lastName,  3);
-    this.isDoBValid = this.checkValidDate('dob', this.person.dateOfBirth);
-    this.isPhoneValid = this.checkMinimumLength('phone', this.person.phoneNumber, 10);
-    this.isGenderValid = this.checkNotNull('gender', this.person.gender);
-    this.isEducationValid = this.checkMinimumNumber('education', this.person.education, 1);
-    this.isSmokingValid = this.checkNotNull('smoking', this.person.isSmoking);
-    this.isAgreedValid = this.checkNotNull('agreed', this.person.isAgreed);
+    this.isFistNameValid = this.checkMinimumLength(this.person.firstName,  3);
+    this.isLastNameValid = this.checkMinimumLength(this.person.lastName,  3);
+    this.isDoBValid = this.checkValidDate(this.person.dateOfBirth);
+    this.isPhoneValid = this.checkMinimumLength(this.person.phoneNumber, 10);
+    this.isGenderValid = this.checkNotNull(this.person.gender);
+    this.isEducationValid = this.checkMinimumNumber(this.person.education, 1);
+    this.isSmokingValid = this.checkNotNull(this.person.isSmoking);
+    this.isAgreedValid = this.checkNotNull(this.person.isAgreed);
 
 
     this.correct = this.isFistNameValid
@@ -44,36 +44,19 @@ export class AppComponent {
   }
 
   // Check element for error, make red box and display error message
-  private checkMinimumLength(field: string, data: string, minimumLength: number = 1): boolean {
-    if (data.length < minimumLength) {
-        return false;
-    }
-
-    return true;
+  private checkMinimumLength(data: string, minimumLength: number = 1): boolean {
+    return data.length >= minimumLength;
   }
 
-  private checkMinimumNumber(field: string, data: number, minimumNumber: number = 1): boolean {
-    if (data < minimumNumber) {
-        return false;
-    }
-    return true;
+  private checkMinimumNumber(data: number, minimumNumber: number = 1): boolean {
+    return data >= minimumNumber;
   }
 
-  private checkValidDate(field: string, data: Date): boolean {
-    if (data === undefined) {
-      return false;
-  }
-    if (data.toString() === 'Invalid Date') {
-        return false;
-    }
-    return true;
+  private checkValidDate(data: Date): boolean {
+      return data !== undefined;
   }
 
-  private checkNotNull(field: string, data: any | null): boolean {
-
-    if (data === null) {
-        return false;
-    }
-    return true;
+  private checkNotNull(data: any | null): boolean {
+        return data !== null;
   }
 }

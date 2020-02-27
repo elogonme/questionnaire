@@ -12,20 +12,23 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>
-        <button class="btn btn-outline-secondary btn-sm">Up</button>
-        <button class="btn btn-outline-success btn-sm">Down</button>
-        <button class="btn btn-outline-danger btn-sm">Del</button>
-        <button class="btn btn-primary btn-sm">Update</button>
-      </td>
-    </tr>
+    <ng-container *ngFor="let item of persons">
+      <tr >
+        <td>{{item}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <button class="btn btn-outline-secondary btn-sm material-icons">arrow_upward</button>
+          <button class="btn btn-outline-success btn-sm material-icons">arrow_downward</button>
+          <button class="btn btn-outline-danger btn-sm material-icons">close</button>
+          <button class="btn btn-primary btn-sm material-icons">refresh</button>
+        </td>
+      </tr>
+    </ng-container>
+
   </tbody>
 </table>

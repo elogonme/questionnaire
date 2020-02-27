@@ -32,7 +32,6 @@ export class AppComponent {
     this.isSmokingValid = this.checkNotNull(this.person.isSmoking);
     this.isAgreedValid = this.checkNotNull(this.person.isAgreed);
 
-
     this.correct = this.isFistNameValid
       && this.isLastNameValid
       && this.isDoBValid

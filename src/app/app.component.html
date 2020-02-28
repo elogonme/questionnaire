@@ -8,37 +8,37 @@
       </div>
 
       <div class="container form">
-          <div class="row">
+          <div class="row" [ngClass]="checkMinimumLength(person.firstName,1)">
               <div class="col-4 text-right">First Name </div>
-              <input [(ngModel)]="person.firstName" class="col-xs-4" type="text" id="firstName" placeholder="Enter first name" [ngClass]="{'err-input': !isFistNameValid}">
-              <div class="col-xs-4 text-right msg" [ngClass]="{'err-message': !isFistNameValid}">Please enter name</div>
+              <input [(ngModel)]="person.firstName" class="col-xs-4 field-input" type="text" id="firstName" placeholder="Enter first name">
+              <div class="col-xs-4 text-right msg field-error-message">Please enter name</div>
           </div>
-          <div class="row">
+          <div class="row" [ngClass]="checkMinimumLength(person.lastName,1)">
               <div class="col-4 text-right">Last Name</div>
-              <input [(ngModel)]="person.lastName" class="col-xs-4" type="text" id="lastName" placeholder="Enter last name" [ngClass]="{'err-input': !isLastNameValid}">
-              <div class="col-xs-4 text-left msg" [ngClass]="{'err-message': !isLastNameValid}">Please enter last name</div>
+              <input [(ngModel)]="person.lastName" class="col-xs-4 field-input" type="text" id="lastName" placeholder="Enter last name">
+              <div class="col-xs-4 text-left msg field-error-message">Please enter last name</div>
           </div>
-          <div class="row">
+          <div class="row" [ngClass]="checkValidDate(person.dateOfBirth)">
               <div class="col-4 text-right">Date of birth </div>
-              <input [(ngModel)]="person.dateOfBirth" class="col-xs-4" type="date" id="dob" placeholder="Enter DOB" [ngClass]="{'err-input': !isDoBValid}">
-              <div class="col-xs-4 text-left msg" [ngClass]="{'err-message': !isDoBValid}">Please enter Date of Birth</div>
+              <input [(ngModel)]="person.dateOfBirth" class="col-xs-4 field-input" type="date" max="9000-04-24" id="dob" placeholder="Enter DOB">
+              <div class="col-xs-4 text-left msg field-error-message">Please enter Date of Birth</div>
           </div>
-          <div class="row">
+          <div class="row" [ngClass]="checkMinimumLength(person.phoneNumber,10)">
               <div class="col-4 text-right">Phone Number</div>
-              <input [(ngModel)]="person.phoneNumber" class="col-xs-4" type="tel" id="phone" placeholder="Enter Phone No" [ngClass]="{'err-input': !isPhoneValid}">
-              <div class="col-xs-4 text-left msg" [ngClass]="{'err-message': !isPhoneValid}">Please enter Phone number</div>
+              <input [(ngModel)]="person.phoneNumber" class="col-xs-4 field-input" type="tel" id="phone" placeholder="Enter Phone No">
+              <div class="col-xs-4 text-left msg field-error-message">Please enter Phone number</div>
           </div>
-          <div class="row">
+          <div class="row" [ngClass]="checkNotNull(person.gender)">
               <div class="col-4 text-right" id="gender">Gender </div>
-              <div class="col-xs-4 text-left gender" [ngClass]="{'err-input': !isGenderValid}">
+              <div class="col-xs-4 text-left gender field-input">
                   <input [(ngModel)]="person.gender" class="data" type="radio" id="genderMale" name="gender" value="1"> Male
                   <input [(ngModel)]="person.gender" class="data" type="radio" id="genderFemale" name="gender" value="2"> Female
               </div>
-              <div class="col-xs-4 msg" [ngClass]="{'err-message': !isGenderValid}">Please enter gender</div>
+              <div class="col-xs-4 msg field-error-message">Please enter gender</div>
           </div>
-          <div class="row">
+          <div class="row" [ngClass]="checkMinimumNumber(person.education,1)">
               <div class="col-4 text-right">Education</div>
-              <select id="education" class="col-xs-4" [(ngModel)]="person.education" [ngClass]="{'err-input': !isEducationValid}">
+              <select id="education" class="col-xs-4 field-input" [(ngModel)]="person.education">
                   <option value="0"></option>
                   <option value="1">None</option>
                   <option value="2">Secondary education</option>
@@ -46,34 +46,31 @@
                   <option value="4">Bachelor's degree</option>
                   <option value="5">Master's degree</option>
               </select>
-              <div class="col-xs-4 text-left msg" [ngClass]="{'err-message': !isEducationValid}">Please select education</div>
+              <div class="col-xs-4 text-left msg field-error-message">Please select education</div>
           </div>
-          <div class="row">
+          <div class="row" [ngClass]="checkNotNull(person.isSmoking)">
               <div class="col-4 text-right">Smoking?</div>
-              <div class="col-xs-4 text-left" [ngClass]="{'err-input': !isSmokingValid}">
+              <div class="col-xs-4 text-left field-input">
                   <input [(ngModel)]="person.isSmoking" class="data" type="radio" name="smoking" id="smokingYes" value="yes"> Yes
                   <input [(ngModel)]="person.isSmoking" class="data" type="radio" name="smoking" id="smokingNo" value="no"> No
               </div>
-              <div class="col-xs-4 text-left msg" [ngClass]="{'err-message': !isSmokingValid}">Please choose Yes/No</div>
+              <div class="col-xs-4 text-left msg field-error-message">Please choose Yes/No</div>
           </div>
-          <div class="row">
+          <div class="row" [ngClass]="checkNotNull(person.isAgreed)">
               <div class="col-4 text-right">
                 <i class="material-icons icon-2">verified_user</i>
               </div>
               <div class="col-xs-4 text-left">
-                <label for="agreement" [ngClass]="{'err-input': !isAgreedValid}" class="agree">
+                <label for="agreement" class="agree field-input">
                     <input [(ngModel)]="person.isAgreed" class="agree data" id="agreement" type="checkbox">
                     Agree to terms
                 </label>
               </div>
-              <div class="col-xs-4 msg" [ngClass]="{'err-message': !isAgreedValid}">Please agree to terms</div>
+              <div class="col-xs-4 msg field-error-message">Please agree to terms</div>
           </div>
           <div class="row">
-              <div class="msg-ok col" id="checkMsg" [ngClass]="{'msg-ok-on': correct}">Check completed successfully</div>
+              <div class="msg-ok col" id="checkMsg" [ngClass]="validate()">Check completed successfully</div>
           </div>
-          <button (click)="startChecks()" class="submit btn btn-success btn-md" type="submit" id="submitBtn">
-            <i class="material-icons">done</i> Submit
-          </button>
       </div>
   </div>
 </div>

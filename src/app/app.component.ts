@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Person } from './models/person';
+import { EDUCATIONS } from './models/person';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +9,12 @@ import { Person } from './models/person';
 })
 export class AppComponent {
   person: Person = new Person();
-  personsList: Person[] = [];
-  educationList = ['None','Secondary','Post-secondary','Bachelor\'s degree','Masterr\'s degree'];
+  persons: Person[] = [];
+  edTitle = EDUCATIONS;
 
   addPerson() {
-    let empty : Person = new Person(); // Empty Person to clear input fields
-    this.person.educationName = this.educationList[this.person.education-1]; // Get education name
-    let p2 = this.person.clone();
-    this.personsList.push(p2);
-    this.person = empty; // Clear input form
+    this.persons.push(this.person);
+    this.person = new Person();
   }
 
   checkMinimumLength(data: string, minimumLength: number = 1) {
@@ -39,4 +37,3 @@ export class AppComponent {
     return {'msg-ok-on': this.person.validate()};
   }
 }
-

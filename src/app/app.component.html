@@ -36,15 +36,10 @@
               </div>
               <div class="col-xs-4 msg field-error-message">Please enter gender</div>
           </div>
-          <div class="row" [ngClass]="checkMinimumNumber(person.education,1)">
+          <div class="row" [ngClass]="checkMinimumNumber(person.educationId,1)">
               <div class="col-4 text-right">Education</div>
-              <select id="education" class="col-xs-4 field-input" [(ngModel)]="person.education">
-                  <option value="0"></option>
-                  <option value="1">None</option>
-                  <option value="2">Secondary education</option>
-                  <option value="3">Post-secondary</option>
-                  <option value="4">Bachelor's degree</option>
-                  <option value="5">Master's degree</option>
+              <select id="education" class="col-xs-4 field-input" [(ngModel)]="person.educationId">
+                  <option *ngFor="let title of edTitle | keyvalue" [value]="title.key">{{title.value}}</option>
               </select>
               <div class="col-xs-4 text-left msg field-error-message">Please select education</div>
           </div>
@@ -78,5 +73,5 @@
   </div>
 </div>
 <div>
-  <app-person-list [persons]="personsList"></app-person-list>
+  <app-person-list [persons]="persons"></app-person-list>
 </div>

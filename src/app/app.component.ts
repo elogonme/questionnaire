@@ -8,6 +8,16 @@ import { Person } from './models/person';
 })
 export class AppComponent {
   person: Person = new Person();
+  personsList: Person[] = [];
+  educationList = ['None','Secondary','Post-secondary','Bachelor\'s degree','Masterr\'s degree'];
+
+  addPerson() {
+    let empty : Person = new Person(); // Empty Person to clear input fields
+    this.person.educationName = this.educationList[this.person.education-1]; // Get education name
+    let p2 = this.person.clone();
+    this.personsList.push(p2);
+    this.person = empty; // Clear input form
+  }
 
   checkMinimumLength(data: string, minimumLength: number = 1) {
     return {'field-error': data.length < minimumLength};

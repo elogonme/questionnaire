@@ -1,0 +1,7 @@
+.table-striped > tr:nth-child(odd) > td {
+  background-color: #fff;
+}
+
+.table-striped > tr:nth-child(even) > td {
+  background-color: #f1f1f1;
+}

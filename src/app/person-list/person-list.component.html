@@ -1,6 +1,6 @@
 <table class="table">
   <thead>
-    <tr>
+    <tr class="bg-secondary text-light">
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
       <th scope="col">Date of Birth</th>
@@ -11,16 +11,16 @@
       <th scope="col">Actions</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="table-striped">
     <ng-container *ngFor="let item of persons">
       <tr >
-        <td>{{item}}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{item.firstName}}</td>
+        <td>{{item.lastName}}</td>
+        <td>{{item.dateOfBirth}}</td>
+        <td>{{item.phoneNumber}}</td>
+        <td>{{item.gender}}</td>
+        <td>{{item.educationName}}</td>
+        <td >{{item.isSmoking}}</td>
         <td>
           <button class="btn btn-outline-secondary btn-sm material-icons">arrow_upward</button>
           <button class="btn btn-outline-success btn-sm material-icons">arrow_downward</button>

@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody class="table-striped">
-    <ng-container *ngFor="let item of persons">
+    <ng-container *ngFor="let item of persons ; index as i">
       <tr >
         <td>{{item.firstName}}</td>
         <td>{{item.lastName}}</td>
@@ -24,7 +24,7 @@
         <td>
           <button class="btn btn-outline-secondary btn-sm material-icons">arrow_upward</button>
           <button class="btn btn-outline-success btn-sm material-icons">arrow_downward</button>
-          <button class="btn btn-outline-danger btn-sm material-icons">close</button>
+          <button (click)="deletePerson(i)" class="btn btn-outline-danger btn-sm material-icons">close</button>
           <button class="btn btn-primary btn-sm material-icons">refresh</button>
         </td>
       </tr>

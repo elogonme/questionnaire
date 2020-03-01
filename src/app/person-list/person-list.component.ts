@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Person } from '../models/person';
-import { EDUCATIONS_MAP } from '../models/person';
+import { EDUCATION_MAP } from '../models/person';
 
 @Component({
   selector: 'app-person-list',
@@ -8,10 +8,14 @@ import { EDUCATIONS_MAP } from '../models/person';
   styleUrls: ['./person-list.component.css']
 })
 export class PersonListComponent implements OnInit {
-  educationMap = EDUCATIONS_MAP;
+  educationMap = EDUCATION_MAP;
 
   @Input() persons: Person[] = [];
   constructor() { }
+
+  deletePerson(id) {
+    this.persons.splice(id,1);
+  }
 
   ngOnInit(): void {
   }

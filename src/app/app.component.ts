@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Person } from './models/person';
-import { EDUCATIONS_MAP } from './models/person';
+import { EDUCATION_MAP } from './models/person';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { EDUCATIONS_MAP } from './models/person';
 export class AppComponent {
   person: Person = new Person();
   persons: Person[] = [];
-  educationMap = EDUCATIONS_MAP;
+  educationMap = EDUCATION_MAP;
 
   addPerson() {
     this.persons.push(this.person);

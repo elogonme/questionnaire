@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Person } from '../models/person';
+import { EDUCATIONS_MAP } from '../models/person';
 
 @Component({
   selector: 'app-person-list',
@@ -6,11 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./person-list.component.css']
 })
 export class PersonListComponent implements OnInit {
+  educationMap = EDUCATIONS_MAP;
 
-  @Input() persons: string[] = [];
+  @Input() persons: Person[] = [];
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

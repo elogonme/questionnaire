@@ -3,8 +3,8 @@ export class Person {
   lastName = '';
   dateOfBirth: Date;
   phoneNumber = '';
-  gender: number | null = null; // 0 - male, 1 - female
-  education = 0;
+  gender: number | null = null;
+  educationId = 0;
   isSmoking: boolean | null = null;
   isAgreed: boolean | null = null;
 
@@ -14,8 +14,15 @@ export class Person {
       && this.dateOfBirth !== undefined
       && this.phoneNumber.length >= 10
       && !!this.gender
-      && this.education > 1
+      && this.educationId >= 1
       && !!this.isSmoking
       && !!this.isAgreed;
   }
 }
+
+export const EDUCATIONS_MAP = new Map<number, string>([
+  [1, 'None'],
+  [2, 'Secondary'],
+  [3,'Post-secondary'],
+  [4,`Bachelor's degree`],
+  [5,`Master's degree`]]);

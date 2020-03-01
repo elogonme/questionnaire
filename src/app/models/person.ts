@@ -20,5 +20,5 @@ export class Person {
   }
 }
 
-export const EDUCATIONS = new Map<number, string>([
+export const EDUCATIONS_MAP = new Map<number, string>([
   [1, 'None'], [2, 'Secondary'],[3,'Post-secondary'],[4,'Bachelor\'s degree'],[5,'Master\'s degree']]);

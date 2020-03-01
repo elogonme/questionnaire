@@ -39,7 +39,7 @@
           <div class="row" [ngClass]="checkMinimumNumber(person.educationId,1)">
               <div class="col-4 text-right">Education</div>
               <select id="education" class="col-xs-4 field-input" [(ngModel)]="person.educationId">
-                  <option *ngFor="let title of edTitle | keyvalue" [value]="title.key">{{title.value}}</option>
+                  <option *ngFor="let title of educationMap | keyvalue" [value]="title.key">{{title.value}}</option>
               </select>
               <div class="col-xs-4 text-left msg field-error-message">Please select education</div>
           </div>

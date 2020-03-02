@@ -25,7 +25,7 @@
           </div>
           <div class="row" [ngClass]="checkMinimumLength(person.phoneNumber,10)">
               <div class="col-4 text-right">Phone Number</div>
-              <input [(ngModel)]="person.phoneNumber" class="col-xs-4 field-input" type="tel" id="phone" placeholder="Enter Phone No">
+              <input [(ngModel)]="person.phoneNumber" class="col-xs-4 field-input" type="tel" id="phone" placeholder="Enter Phone No" maxlength="15">
               <div class="col-xs-4 text-left msg field-error-message">Please enter Phone number</div>
           </div>
           <div class="row" [ngClass]="checkNotNull(person.gender)">

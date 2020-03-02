@@ -17,6 +17,20 @@ export class PersonListComponent implements OnInit {
     this.persons.splice(id,1);
   }
 
+  moveUpPerson(i) {
+    if (i === 0) {
+      return;
+    }
+    this.persons.splice(i-1,0, this.persons.splice(i,1)[0]);
+  }
+
+  moveDownPerson(i) {
+    if (i === this.persons.length - 1) {
+      return;
+    }
+    this.persons.splice(i+1,0, this.persons.splice(i,1)[0]);
+  }
+
   ngOnInit(): void {
   }
 }

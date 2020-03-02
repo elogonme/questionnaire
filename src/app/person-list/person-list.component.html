@@ -22,8 +22,8 @@
         <td>{{educationMap.get(+item.educationId)}}</td>
         <td >{{item.isSmoking}}</td>
         <td>
-          <button class="btn btn-outline-secondary btn-sm material-icons">arrow_upward</button>
-          <button class="btn btn-outline-success btn-sm material-icons">arrow_downward</button>
+          <button (click)="moveUpPerson(i)" class="btn btn-outline-secondary btn-sm material-icons">arrow_upward</button>
+          <button (click)="moveDownPerson(i)" class="btn btn-outline-success btn-sm material-icons">arrow_downward</button>
           <button (click)="deletePerson(i)" class="btn btn-outline-danger btn-sm material-icons">close</button>
           <button class="btn btn-primary btn-sm material-icons">refresh</button>
         </td>

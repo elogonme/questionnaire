@@ -30,10 +30,18 @@ export class AppComponent {
   }
 
   checkNotNull(data: any) {
-        return {'field-error': data === null || data === false};
+    return {'field-error': data === null || data === false};
   }
 
   validate(){
     return {'msg-ok-on': this.person.validate()};
+  }
+
+  editPerson(person: Person) {
+    this.person = Object.assign(new Person(), person);
+  }
+
+  clearForm() {
+    this.person = new Person();
   }
 }

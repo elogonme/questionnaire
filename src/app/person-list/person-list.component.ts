@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Person } from '../models/person';
 import { EDUCATION_MAP } from '../models/person';
 
@@ -10,7 +10,12 @@ import { EDUCATION_MAP } from '../models/person';
 export class PersonListComponent implements OnInit {
   educationMap = EDUCATION_MAP;
 
+  @Input() person: Person;
   @Input() persons: Person[] = [];
+
+  @Output()
+  personSelected = new EventEmitter<Person>();
+
   constructor() { }
 
   deletePerson(id) {
@@ -29,6 +34,14 @@ export class PersonListComponent implements OnInit {
       return;
     }
     this.persons.splice(i+1,0, this.persons.splice(i,1)[0]);
+  }
+
+  onPersonSelected(i) {
+    this.personSelected.emit(this.persons[i]);
+  }
+
+  updatePerson(i){
+  this.persons.splice(i, 1, this.person);
   }
 
   ngOnInit(): void {

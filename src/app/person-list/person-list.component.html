@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table table-hover table-sm align-center">
   <thead>
     <tr class="bg-secondary text-light">
       <th scope="col">First Name</th>
@@ -11,9 +11,9 @@
       <th scope="col">Actions</th>
     </tr>
   </thead>
-  <tbody class="table-striped">
+  <tbody>
     <ng-container *ngFor="let item of persons ; index as i">
-      <tr (click)="onPersonSelected(i)">
+      <tr scope="row" (click)="onPersonSelected(i)" [ngClass]="{'font-weight-bold table-active': (i === item.selectedRow) }">
         <td>{{item.firstName}}</td>
         <td>{{item.lastName}}</td>
         <td>{{item.dateOfBirth}}</td>
@@ -23,9 +23,9 @@
         <td >{{item.isSmoking}}</td>
         <td>
           <button (click)="moveUpPerson(i)" class="btn btn-outline-secondary btn-sm material-icons">arrow_upward</button>
-          <button (click)="moveDownPerson(i)" class="btn btn-outline-success btn-sm material-icons">arrow_downward</button>
-          <button (click)="deletePerson(i)" class="btn btn-outline-danger btn-sm material-icons">close</button>
-          <button (click)="updatePerson(i)" class="btn btn-primary btn-sm material-icons">refresh</button>
+          <button (click)="moveDownPerson(i)" class="btn btn-outline-success btn-sm material-icons ml-1">arrow_downward</button>
+          <button (click)="deletePerson(i)" class="btn btn-outline-danger btn-sm material-icons ml-1">close</button>
+          <button (click)="updatePerson(i)" class="btn btn-primary btn-sm material-icons ml-1">refresh</button>
         </td>
       </tr>
     </ng-container>

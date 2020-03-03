@@ -23,25 +23,32 @@ export class PersonListComponent implements OnInit {
   }
 
   moveUpPerson(i) {
+
     if (i === 0) {
       return;
     }
+    this.persons[i].selectedRow = i+1;
     this.persons.splice(i-1,0, this.persons.splice(i,1)[0]);
   }
 
   moveDownPerson(i) {
+
     if (i === this.persons.length - 1) {
       return;
     }
+    this.persons[i].selectedRow = i-1;
     this.persons.splice(i+1,0, this.persons.splice(i,1)[0]);
   }
 
   onPersonSelected(i) {
+    this.persons.forEach(element => { element.selectedRow = -1 });
+    this.persons[i].selectedRow = i;
     this.personSelected.emit(this.persons[i]);
   }
 
   updatePerson(i){
-  this.persons.splice(i, 1, this.person);
+    this.person.selectedRow = -1;
+    this.persons.splice(i, 1, this.person);
   }
 
   ngOnInit(): void {

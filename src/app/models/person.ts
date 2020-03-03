@@ -7,6 +7,7 @@ export class Person {
   educationId = 0;
   isSmoking: boolean | null = null;
   isAgreed: boolean | null = null;
+  selectedRow: number = -1;
 
   validate(): boolean {
     return this.firstName.length >= 3

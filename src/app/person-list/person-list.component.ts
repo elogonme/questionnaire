@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Person } from '../models/person';
 import { EDUCATION_MAP } from '../models/person';
 
@@ -7,27 +7,25 @@ import { EDUCATION_MAP } from '../models/person';
   templateUrl: './person-list.component.html',
   styleUrls: ['./person-list.component.css']
 })
-export class PersonListComponent implements OnInit {
-  educationMap = EDUCATION_MAP;
-  selectedRows: Array<any> = [];
+export class PersonListComponent {
 
   @Input() person: Person;
   @Input() persons: Person[] = [];
+  @Output() personSelected = new EventEmitter<Person>();
 
-  @Output()
-  personSelected = new EventEmitter<Person>();
-
-  constructor() { }
+  educationMap = EDUCATION_MAP;
+  selectedRow = -1;
 
   deletePerson(i: number) {
     this.persons.splice(i, 1);
+    this.selectedRow = -1;
   }
 
   moveUpPerson(i: number) {
     if (i === 0) {
       return;
     }
-    this.selectedRows[i] = i + 1;
+    this.selectedRow = -1;
     this.persons.splice(i - 1, 0, this.persons.splice(i, 1)[0]);
   }
 
@@ -35,25 +33,19 @@ export class PersonListComponent implements OnInit {
     if (i === this.persons.length - 1) {
       return;
     }
-    this.selectedRows[i] = i - 1;
+    this.selectedRow = -1;
     this.persons.splice(i + 1, 0, this.persons.splice(i, 1)[0]);
   }
 
-  onPersonSelected(i: number) {
-    this.selectedRows = [];
-    let index: number;
-    for (index = 0; index < this.persons.length; index++) {
-      this.selectedRows.push(-1);
-    }
-    this.selectedRows[i] = i;
+  selectRow(i: number) {
+    this.selectedRow = i;
     this.personSelected.emit(this.persons[i]);
   }
 
   updatePerson(i: number) {
-    this.selectedRows[i] = -1;
+    this.selectedRow = -1;
     this.persons.splice(i, 1, this.person);
+    this.personSelected.emit(new Person());
   }
 
-  ngOnInit(): void {
-  }
 }

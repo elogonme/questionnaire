@@ -1,4 +1,4 @@
-<table class="table table-hover table-sm align-center">
+<table class="table table-hover table-sm align-center table-striped">
   <thead>
     <tr class="bg-secondary text-light">
       <th scope="col">First Name</th>
@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <ng-container *ngFor="let item of persons ; index as i">
-      <tr scope="row" (click)="onPersonSelected(i)" [ngClass]="{'font-weight-bold table-active': (i === item.selectedRow) }">
+      <tr scope="row" (click)="onPersonSelected(i)" [ngClass]="{'font-weight-bold table-active': (i === selectedRows[i]) }">
         <td>{{item.firstName}}</td>
         <td>{{item.lastName}}</td>
         <td>{{item.dateOfBirth}}</td>

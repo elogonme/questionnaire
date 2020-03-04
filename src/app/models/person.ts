@@ -7,7 +7,6 @@ export class Person {
   educationId = 0;
   isSmoking: boolean | null = null;
   isAgreed: boolean | null = null;
-  selectedRow: number = -1;
 
   validate(): boolean {
     return this.firstName.length >= 3
@@ -24,7 +23,7 @@ export class Person {
 export const EDUCATION_MAP = new Map<number, string>([
   [1, 'None'],
   [2, 'Secondary'],
-  [3,'Post-secondary'],
-  [4,`Bachelor's degree`],
-  [5,`Master's degree`]
+  [3, 'Post-secondary'],
+  [4, `Bachelor's degree`],
+  [5, `Master's degree`]
 ]);

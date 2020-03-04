@@ -22,7 +22,7 @@ export class AppComponent {
   }
 
   checkValidDate(data: any) {
-    return {'field-error': data === undefined || data.toString() === "" };
+    return {'field-error': data === undefined || data.toString() === ''};
   }
 
   checkMinimumNumber(data: number, minimumNumber: number = 1) {
@@ -33,7 +33,7 @@ export class AppComponent {
     return {'field-error': data === null || data === false};
   }
 
-  validate(){
+  validate() {
     return {'msg-ok-on': this.person.validate()};
   }
 

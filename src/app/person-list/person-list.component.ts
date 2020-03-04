@@ -9,6 +9,7 @@ import { EDUCATION_MAP } from '../models/person';
 })
 export class PersonListComponent implements OnInit {
   educationMap = EDUCATION_MAP;
+  selectedRows: Array<any> = [];
 
   @Input() person: Person;
   @Input() persons: Person[] = [];
@@ -18,36 +19,38 @@ export class PersonListComponent implements OnInit {
 
   constructor() { }
 
-  deletePerson(id) {
-    this.persons.splice(id,1);
+  deletePerson(i: number) {
+    this.persons.splice(i, 1);
   }
 
-  moveUpPerson(i) {
-
+  moveUpPerson(i: number) {
     if (i === 0) {
       return;
     }
-    this.persons[i].selectedRow = i+1;
-    this.persons.splice(i-1,0, this.persons.splice(i,1)[0]);
+    this.selectedRows[i] = i + 1;
+    this.persons.splice(i - 1, 0, this.persons.splice(i, 1)[0]);
   }
 
-  moveDownPerson(i) {
-
+  moveDownPerson(i: number) {
     if (i === this.persons.length - 1) {
       return;
     }
-    this.persons[i].selectedRow = i-1;
-    this.persons.splice(i+1,0, this.persons.splice(i,1)[0]);
+    this.selectedRows[i] = i - 1;
+    this.persons.splice(i + 1, 0, this.persons.splice(i, 1)[0]);
   }
 
-  onPersonSelected(i) {
-    this.persons.forEach(element => { element.selectedRow = -1 });
-    this.persons[i].selectedRow = i;
+  onPersonSelected(i: number) {
+    this.selectedRows = [];
+    let index: number;
+    for (index = 0; index < this.persons.length; index++) {
+      this.selectedRows.push(-1);
+    }
+    this.selectedRows[i] = i;
     this.personSelected.emit(this.persons[i]);
   }
 
-  updatePerson(i){
-    this.person.selectedRow = -1;
+  updatePerson(i: number) {
+    this.selectedRows[i] = -1;
     this.persons.splice(i, 1, this.person);
   }
 

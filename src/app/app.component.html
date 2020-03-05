@@ -69,9 +69,13 @@
           <button (click)="addPerson()" class="submit btn btn-primary btn-md" type="submit" id="submitBtn" [disabled]="!person.validate()">
             Add <i class="material-icons">keyboard_return</i>
           </button>
+          <button (click)="clearForm()" class="submit btn btn-secondary btn-md ml-2" type="submit" id="clearBtn">
+            Clear <i class="material-icons">clear_all</i>
+          </button>
       </div>
   </div>
 </div>
 <div>
-  <app-person-list [persons]="persons"></app-person-list>
+  <app-person-list (personSelected)="editPerson($event)" [persons]="persons" [person]="person"></app-person-list>
 </div>
+

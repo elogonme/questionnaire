@@ -22,8 +22,8 @@
         <td (click)="selectRow(i)">{{educationMap.get(+item.educationId)}}</td>
         <td (click)="selectRow(i)">{{item.isSmoking}}</td>
         <td>
-          <button (click)="moveUpPerson(i)" class="btn btn-outline-secondary btn-sm material-icons">arrow_upward</button>
-          <button (click)="moveDownPerson(i)" class="btn btn-outline-success btn-sm material-icons ml-1">arrow_downward</button>
+          <button (click)="moveRow(i, -1)" class="btn btn-outline-secondary btn-sm material-icons">arrow_upward</button>
+          <button (click)="moveRow(i, 1)" class="btn btn-outline-success btn-sm material-icons ml-1">arrow_downward</button>
           <button (click)="deletePerson(i)" class="btn btn-outline-danger btn-sm material-icons ml-1">close</button>
           <button (click)="updatePerson(i)" class="btn btn-primary btn-sm material-icons ml-1">refresh</button>
         </td>

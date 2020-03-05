@@ -21,21 +21,15 @@ export class PersonListComponent {
     this.selectedRow = -1;
   }
 
-  moveUpPerson(i: number) {
-    if (i === 0) {
-      return;
-    }
-    this.selectedRow = -1;
-    this.persons.splice(i - 1, 0, this.persons.splice(i, 1)[0]);
-  }
+  moveRow(rowIndex: number, shift: number) {
 
-  moveDownPerson(i: number) {
-    if (i === this.persons.length - 1) {
+    if (rowIndex + shift < 0 || rowIndex + shift > this.persons.length - 1) {
       return;
     }
+
     this.selectedRow = -1;
-    this.persons.splice(i + 1, 0, this.persons.splice(i, 1)[0]);
-  }
+    this.persons.splice(rowIndex + shift, 0, this.persons.splice(rowIndex, 1)[0]);
+}
 
   selectRow(i: number) {
     this.selectedRow = i;

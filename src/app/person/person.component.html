@@ -1,1 +1,2 @@
-<app-person-form></app-person-form>
+<app-person-form (personEntered)="getNewPerson($event)" [person]="person"></app-person-form>
+<app-person-list (personSelected)="editPerson($event)" [persons]="persons" [person]="person"></app-person-list>

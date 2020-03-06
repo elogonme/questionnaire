@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Person } from '../../models/person';
 import { EDUCATION_MAP } from '../../models/person';
 
@@ -8,12 +8,14 @@ import { EDUCATION_MAP } from '../../models/person';
   styleUrls: ['./person-form.component.css']
 })
 export class PersonFormComponent {
-  person: Person = new Person();
-  persons: Person[] = [];
+
+  @Input() person: Person;
+  @Output() personEntered = new EventEmitter<Person>();
+
   educationMap = EDUCATION_MAP;
 
   addPerson() {
-    this.persons.push(this.person);
+    this.personEntered.emit(this.person);
     this.person = new Person();
   }
 
@@ -35,10 +37,6 @@ export class PersonFormComponent {
 
   validate() {
     return {'msg-ok-on': this.person.validate()};
-  }
-
-  editPerson(person: Person) {
-    this.person = Object.assign(new Person(), person);
   }
 
   clearForm() {

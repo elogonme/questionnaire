@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Person } from '../models/person';
-import { EDUCATION_MAP } from '../models/person';
+import { Person } from '../../models/person';
+import { EDUCATION_MAP } from '../../models/person';
 
 @Component({
   selector: 'app-person-list',

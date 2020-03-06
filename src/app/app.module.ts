@@ -3,12 +3,16 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { PersonListComponent } from './person-list/person-list.component';
+import { PersonListComponent } from './person/person-list/person-list.component';
+import { PersonComponent } from './person/person.component';
+import { PersonFormComponent } from './person/person-form/person-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PersonListComponent
+    PersonListComponent,
+    PersonComponent,
+    PersonFormComponent
 
   ],
   imports: [

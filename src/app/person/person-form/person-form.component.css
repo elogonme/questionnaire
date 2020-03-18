@@ -1,0 +1,86 @@
+.btn {
+  border: 1px solid #ccc
+}
+
+.main {
+  background-color: #f0f0f0;
+}
+
+.field-error .field-error-message {
+  display: flex;
+}
+
+.field-error .field-input {
+  border: 1px solid red;
+}
+
+.msg {
+  color: red;
+  display: none;
+  padding-left: 10px;
+}
+
+.container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 0px;
+}
+
+.col-xs-6 {
+  padding-right: auto;
+}
+
+.msg-1 {
+  padding-bottom: 10px;
+}
+
+#checkMsg {
+  color: green;
+}
+
+.msg-ok {
+  visibility: hidden;
+  padding-bottom: 5px;
+}
+
+.msg-ok-on {
+  visibility: visible;
+}
+
+.main-form {
+  width: 650px;
+}
+
+.err-off {
+  display: none;
+}
+
+.err-message {
+  display: flex;
+}
+
+.err-input {
+  border: 1px solid red;
+}
+
+.material-icons {
+  font-size: 14px;
+}
+
+.icon-2 {
+  font-size: 20px;
+}
+
+.icon-1 {
+  font-size: 40px;
+  padding-top: 6px;
+  padding-right: 5px;
+}
+
+.heading {
+  justify-content: center;
+}
+
+.agree {
+  margin-bottom: 2px;
+}

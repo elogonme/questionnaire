@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Person } from '../models/person';
-import { EDUCATION_MAP } from '../models/person';
+import { Person } from '../../models/person';
+import { EDUCATION_MAP } from '../../models/person';
 
 @Component({
   selector: 'app-person-list',
@@ -9,9 +9,9 @@ import { EDUCATION_MAP } from '../models/person';
 })
 export class PersonListComponent {
 
-  @Input() person: Person;
   @Input() persons: Person[] = [];
   @Output() personSelected = new EventEmitter<Person>();
+  @Output() updateRequired = new EventEmitter<number>();
 
   educationMap = EDUCATION_MAP;
   selectedRow = -1;
@@ -38,8 +38,7 @@ export class PersonListComponent {
 
   updatePerson(i: number) {
     this.selectedRow = -1;
-    this.persons.splice(i, 1, this.person);
-    this.personSelected.emit(new Person());
+    this.updateRequired.emit(i);
   }
 
 }

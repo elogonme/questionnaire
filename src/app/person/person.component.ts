@@ -19,4 +19,9 @@ export class PersonComponent {
   editPerson(person: Person) {
     this.person = Object.assign(new Person(), person);
   }
+
+  updatePerson(personIndex: number) {
+    this.persons.splice(personIndex, 1, this.person);
+    this.person = new Person();
+  }
 }

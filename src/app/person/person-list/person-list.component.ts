@@ -1,34 +1,41 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Person } from '../../models/person';
 import { EDUCATION_MAP } from '../../models/person';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-person-list',
   templateUrl: './person-list.component.html',
   styleUrls: ['./person-list.component.css']
 })
+
 export class PersonListComponent {
 
   @Input() persons: Person[] = [];
+  @Input() personsTable: MatTableDataSource<Person>;
   @Output() personSelected = new EventEmitter<Person>();
   @Output() updateRequired = new EventEmitter<number>();
 
   educationMap = EDUCATION_MAP;
   selectedRow = -1;
+  displayedColumns = ['name', 'lastname', 'dateOfBirth', 'phoneNumber', 'gender', 'education', 'smoking', 'actions'];
 
-  deletePerson(i: number) {
-    this.persons.splice(i, 1);
+
+  deletePerson() {
+    this.persons.splice(this.selectedRow, 1);
     this.selectedRow = -1;
+    this.updateTable();
   }
 
-  moveRow(rowIndex: number, shift: number) {
+  moveRow(shift: number) {
 
-    if (rowIndex + shift < 0 || rowIndex + shift > this.persons.length - 1) {
+    if (this.selectedRow + shift < 0 || this.selectedRow + shift > this.persons.length - 1) {
       return;
     }
 
+    this.persons.splice(this.selectedRow + shift, 0, this.persons.splice(this.selectedRow, 1)[0]);
     this.selectedRow = -1;
-    this.persons.splice(rowIndex + shift, 0, this.persons.splice(rowIndex, 1)[0]);
+    this.updateTable();
 }
 
   selectRow(i: number) {
@@ -36,9 +43,14 @@ export class PersonListComponent {
     this.personSelected.emit(this.persons[i]);
   }
 
-  updatePerson(i: number) {
+  updatePerson() {
+    this.updateRequired.emit(this.selectedRow);
+    this.updateTable();
     this.selectedRow = -1;
-    this.updateRequired.emit(i);
   }
 
+  updateTable() {
+    this.personsTable.data = this.persons;
+    this.personSelected.emit(new Person());
+  }
 }

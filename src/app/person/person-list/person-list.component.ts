@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Person } from '../../models/person';
 import { EDUCATION_MAP } from '../../models/person';
 import { MatTableDataSource } from '@angular/material/table';
@@ -9,17 +9,21 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./person-list.component.css']
 })
 
-export class PersonListComponent {
+export class PersonListComponent implements OnChanges {
 
   @Input() persons: Person[] = [];
-  @Input() personsTable: MatTableDataSource<Person>;
   @Output() personSelected = new EventEmitter<Person>();
   @Output() updateRequired = new EventEmitter<number>();
+
+  personsTable: MatTableDataSource<Person> = new MatTableDataSource();
 
   educationMap = EDUCATION_MAP;
   selectedRow = -1;
   displayedColumns = ['name', 'lastname', 'dateOfBirth', 'phoneNumber', 'gender', 'education', 'smoking', 'actions'];
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.personsTable.data = changes.persons.currentValue;
+  }
 
   deletePerson() {
     this.persons.splice(this.selectedRow, 1);

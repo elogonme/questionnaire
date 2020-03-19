@@ -17,7 +17,7 @@ export class PersonComponent {
 
   getNewPerson(person: Person) {
     this.persons.push(person);
-    this.personsTable.data = this.persons;
+    this.persons = this.persons.slice();
   }
 
   editPerson(person: Person) {

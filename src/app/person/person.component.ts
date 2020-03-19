@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { Person } from '../models/person';
 import { EDUCATION_MAP } from '../models/person';
 
@@ -13,11 +12,21 @@ export class PersonComponent {
   person: Person = new Person();
   persons: Person[] = [];
   educationMap = EDUCATION_MAP;
-  personsTable: MatTableDataSource<Person> = new MatTableDataSource<Person>();
 
   getNewPerson(person: Person) {
-    this.persons.push(person);
-    this.personsTable.data = this.persons;
+    this.persons = [...this.persons, person];
+    // this.persons.push(person) doesn't work here
+    // because it updates only content of the array but not this.persons reference itself
+    // you need to update this.persons reference as well to trigger OnChange event for child component
+    // other way to do it:
+
+    // this.persons.push(person);
+    // this.persons = this.persons.slice();
+
+    // or
+
+    // this.persons.push(person);
+    // this.persons = [...this.persons];
   }
 
   editPerson(person: Person) {

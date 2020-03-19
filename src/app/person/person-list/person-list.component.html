@@ -1,33 +1,49 @@
-<table class="table table-hover table-sm align-center table-striped">
-  <thead>
-    <tr class="bg-secondary text-light">
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Date of Birth</th>
-      <th scope="col">Phone Number</th>
-      <th scope="col">Gender</th>
-      <th scope="col">Education</th>
-      <th scope="col">Smoking</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-container *ngFor="let item of persons ; index as i">
-      <tr scope="row" [ngClass]="{'font-weight-bold table-active': (i === selectedRow) }">
-        <td (click)="selectRow(i)">{{item.firstName}}</td>
-        <td (click)="selectRow(i)">{{item.lastName}}</td>
-        <td (click)="selectRow(i)">{{item.dateOfBirth}}</td>
-        <td (click)="selectRow(i)">{{item.phoneNumber}}</td>
-        <td (click)="selectRow(i)">{{item.gender}}</td>
-        <td (click)="selectRow(i)">{{educationMap.get(+item.educationId)}}</td>
-        <td (click)="selectRow(i)">{{item.isSmoking}}</td>
-        <td>
-          <button (click)="moveRow(i, -1)" class="btn btn-outline-secondary btn-sm material-icons">arrow_upward</button>
-          <button (click)="moveRow(i, 1)" class="btn btn-outline-success btn-sm material-icons ml-1">arrow_downward</button>
-          <button (click)="deletePerson(i)" class="btn btn-outline-danger btn-sm material-icons ml-1">close</button>
-          <button (click)="updatePerson(i)" class="btn btn-primary btn-sm material-icons ml-1">refresh</button>
-        </td>
-      </tr>
-    </ng-container>
-  </tbody>
-</table>
+<mat-table [dataSource]="personsTable" class="table-striped">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
+    <mat-cell *matCellDef="let i" >{{i.firstName}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="lastname">
+    <mat-header-cell *matHeaderCellDef > Last Name </mat-header-cell>
+    <mat-cell *matCellDef="let i">{{i.lastName}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="dateOfBirth">
+    <mat-header-cell *matHeaderCellDef> Date of Birth </mat-header-cell>
+    <mat-cell *matCellDef="let i">{{i.dateOfBirth | date:'mediumDate'}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="phoneNumber">
+    <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+    <mat-cell *matCellDef="let i">{{i.phoneNumber}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="gender">
+    <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+    <mat-cell *matCellDef="let i">{{i.gender}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="education">
+    <mat-header-cell *matHeaderCellDef> Education </mat-header-cell>
+    <mat-cell *matCellDef="let i">{{educationMap.get(+i.educationId)}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="smoking">
+    <mat-header-cell *matHeaderCellDef> Smoking? </mat-header-cell>
+    <mat-cell *matCellDef="let i" >{{i.isSmoking}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef > Actions </mat-header-cell>
+    <mat-cell *matCellDef="let i" class="action-buttons">
+      <button mat-icon-button (click)="moveRow(-1)"><mat-icon color="primary">arrow_upward</mat-icon></button>
+      <button mat-icon-button (click)="moveRow(1)"><mat-icon color="accent">arrow_downward</mat-icon></button>
+      <button mat-icon-button (click)="deletePerson()"><mat-icon color="warn">close</mat-icon></button>
+      <button mat-icon-button (click)="updatePerson()" ><mat-icon color="primary">refresh</mat-icon></button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns" class="table-header"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns; index as i" (click)="selectRow(i)" [ngClass]="{'row-selected': (i === selectedRow) }"></mat-row>
+</mat-table>

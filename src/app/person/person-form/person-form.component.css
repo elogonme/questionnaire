@@ -1,11 +1,75 @@
-.btn {
-  border: 1px solid #ccc
-}
-
 .main {
   background-color: #f0f0f0;
+  text-align: center;
 }
 
+.header {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.header-icon {
+  font-size: 35px !important;
+  margin-right: 15px
+}
+
+h1 {
+  font-size: xx-large;
+}
+
+.form-container {
+  display: inline-table;
+}
+
+.label {
+  margin-left: 5px;
+  font-weight: 600;
+}
+
+fieldset {
+  display: flexbox;
+  border-radius: 5px;
+  border: 1px solid rgb(189, 188, 188);
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  width: 410px;
+}
+
+mat-form-field {
+  margin-left: 5px;
+  width: 200px;
+}
+
+.fieldset-row {
+  justify-content: space-around !important;
+}
+
+.mat-radio-button {
+  margin-left: 10px;
+}
+
+.radio-group {
+  display: inline-flex;
+  padding: 5px 5px;
+}
+
+.radio-set {
+  height: 40px;
+}
+
+.radio-group.error {
+  border: 2px solid red;
+}
+
+.education {
+  display: flexbox;
+  height: 68px;
+}
+
+.radio {
+  display: flex;
+}
 .field-error .field-error-message {
   display: flex;
 }
@@ -18,16 +82,6 @@
   color: red;
   display: none;
   padding-left: 10px;
-}
-
-.container {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-bottom: 0px;
-}
-
-.col-xs-6 {
-  padding-right: auto;
 }
 
 .msg-1 {
@@ -73,7 +127,6 @@
 
 .icon-1 {
   font-size: 40px;
-  padding-top: 6px;
   padding-right: 5px;
 }
 
@@ -83,4 +136,24 @@
 
 .agree {
   margin-bottom: 2px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.btn-icon {
+  padding-top: 5px;
+}
+
+.btn {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+mat-error {
+  font-size: 12px;
+
+}
+
+.mat-error {
+  font-size: 12px;
 }

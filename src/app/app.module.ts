@@ -14,6 +14,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { CdkColumnDef } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { PersonListComponent } from './person/person-list/person-list.component';
@@ -44,6 +45,7 @@ import { PersonFormComponent } from './person/person-form/person-form.component'
     MatRadioModule,
     MatCheckboxModule,
     MatTableModule,
+    MatCardModule
   ],
   providers: [CdkColumnDef],
   bootstrap: [AppComponent]

@@ -1,49 +1,48 @@
-<mat-table [dataSource]="personsTable" class="table-striped">
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
-    <mat-cell *matCellDef="let i" >{{i.firstName}}</mat-cell>
-  </ng-container>
+<body>
+  <mat-table [dataSource]="personsTable" class="table-striped">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
+      <mat-cell *matCellDef="let i" >{{i.firstName}}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="lastname">
-    <mat-header-cell *matHeaderCellDef > Last Name </mat-header-cell>
-    <mat-cell *matCellDef="let i">{{i.lastName}}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="lastname">
+      <mat-header-cell *matHeaderCellDef > Last Name </mat-header-cell>
+      <mat-cell *matCellDef="let i">{{i.lastName}}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="dateOfBirth">
-    <mat-header-cell *matHeaderCellDef> Date of Birth </mat-header-cell>
-    <mat-cell *matCellDef="let i">{{i.dateOfBirth | date:'mediumDate'}}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="dateOfBirth">
+      <mat-header-cell *matHeaderCellDef> Date of Birth </mat-header-cell>
+      <mat-cell *matCellDef="let i">{{i.dateOfBirth | date:'mediumDate'}}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="phoneNumber">
-    <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
-    <mat-cell *matCellDef="let i">{{i.phoneNumber}}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="phoneNumber">
+      <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+      <mat-cell *matCellDef="let i">{{i.phoneNumber}}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="gender">
-    <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
-    <mat-cell *matCellDef="let i">{{i.gender}}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="gender">
+      <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+      <mat-cell *matCellDef="let i">{{i.gender}}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="education">
-    <mat-header-cell *matHeaderCellDef> Education </mat-header-cell>
-    <mat-cell *matCellDef="let i">{{educationMap.get(+i.educationId)}}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="education">
+      <mat-header-cell *matHeaderCellDef> Education </mat-header-cell>
+      <mat-cell *matCellDef="let i">{{educationMap.get(+i.educationId)}}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="smoking">
-    <mat-header-cell *matHeaderCellDef> Smoking? </mat-header-cell>
-    <mat-cell *matCellDef="let i" >{{i.isSmoking}}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="smoking">
+      <mat-header-cell *matHeaderCellDef> Smoking? </mat-header-cell>
+      <mat-cell *matCellDef="let i" >{{i.isSmoking}}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="actions">
-    <mat-header-cell *matHeaderCellDef > Actions </mat-header-cell>
-    <mat-cell *matCellDef="let i" class="action-buttons">
-      <button mat-icon-button (click)="moveRow(-1)"><mat-icon color="primary">arrow_upward</mat-icon></button>
-      <button mat-icon-button (click)="moveRow(1)"><mat-icon color="accent">arrow_downward</mat-icon></button>
-      <button mat-icon-button (click)="deletePerson()"><mat-icon color="warn">close</mat-icon></button>
-      <button mat-icon-button (click)="updatePerson()" ><mat-icon color="primary">refresh</mat-icon></button>
-    </mat-cell>
-  </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns" class="table-header"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns; index as i" (click)="selectRow(i)" [ngClass]="{'row-selected': (i === selectedRow) }"></mat-row>
+  </mat-table>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns" class="table-header"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns; index as i" (click)="selectRow(i)" [ngClass]="{'row-selected': (i === selectedRow) }"></mat-row>
-</mat-table>
+  <mat-cell class="action-buttons">
+    <button mat-icon-button (click)="moveRow(-1)"><mat-icon color="primary">arrow_upward</mat-icon></button>
+    <button mat-icon-button (click)="moveRow(1)"><mat-icon color="accent">arrow_downward</mat-icon></button>
+    <button mat-icon-button (click)="deletePerson()"><mat-icon color="warn">close</mat-icon></button>
+    <button mat-icon-button (click)="updatePerson()" ><mat-icon color="primary">refresh</mat-icon></button>
+  </mat-cell>
+</body>

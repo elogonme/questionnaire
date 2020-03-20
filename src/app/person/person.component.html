@@ -1,2 +1,15 @@
-<app-person-form (personEntered)="getNewPerson($event)" [person]="person"></app-person-form>
-<app-person-list (personSelected)="editPerson($event)" [persons]="persons" (updateRequired)="updatePerson($event)"></app-person-list>
+<div class="header">
+  <mat-icon class="header-icon">assignment</mat-icon>
+  <h1>Questionnaire</h1>
+</div>
+
+<div class="main">
+  <mat-card class="persons">
+    <mat-card-title>Persons</mat-card-title>
+    <app-person-list (personSelected)="editPerson($event)" [persons]="persons" (updateRequired)="updatePerson($event)"></app-person-list>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>Person Details</mat-card-title>
+    <app-person-form (personEntered)="getNewPerson($event)" [person]="person"></app-person-form>
+  </mat-card>
+</div>

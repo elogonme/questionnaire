@@ -1,10 +1,5 @@
 <div class="main">
 
-  <div class="header">
-      <mat-icon class="header-icon">assignment</mat-icon>
-      <h1>Questionnaire</h1>
-  </div>
-
   <form #FormValid="ngForm" class="form-container" novalidate>
     <fieldset class="fieldset-row">
       <mat-form-field appearance = "outline" hintLabel="Min 3 characters">
@@ -64,7 +59,6 @@
           </mat-select>
           <div *ngIf="person.educationId === 0" class="mat-error">You must make a selection</div>
         </mat-form-field>
-
 
         <mat-checkbox class="agree" name="pAgreed" [(ngModel)]="person.isAgreed" required #pAgreed="ngModel"> Agree to terms
           <mat-error *ngIf="pAgreed.hasError('required')" class="error">Please agree to terms</mat-error>

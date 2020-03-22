@@ -1,4 +1,6 @@
-<body>
+<mat-card class="persons">
+  <mat-card-title>Persons</mat-card-title>
+
   <mat-table [dataSource]="personsTable" class="table-striped">
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
@@ -45,4 +47,4 @@
     <button mat-icon-button (click)="deletePerson()"><mat-icon color="warn">close</mat-icon></button>
     <button mat-icon-button (click)="updatePerson()" ><mat-icon color="primary">refresh</mat-icon></button>
   </mat-cell>
-</body>
+</mat-card>

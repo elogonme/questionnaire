@@ -4,12 +4,6 @@
 </div>
 
 <div class="main">
-  <mat-card class="persons">
-    <mat-card-title>Persons</mat-card-title>
-    <app-person-list (personSelected)="editPerson($event)" [persons]="persons" (updateRequired)="updatePerson($event)"></app-person-list>
-  </mat-card>
-  <mat-card>
-    <mat-card-title>Person Details</mat-card-title>
+    <app-person-list (personSelected)="editPerson($event)" [persons]="persons" (updateRequired)="updatePerson($event)" class="person-list"></app-person-list>
     <app-person-form (personEntered)="getNewPerson($event)" [person]="person"></app-person-form>
-  </mat-card>
 </div>

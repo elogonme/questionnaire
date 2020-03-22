@@ -18,3 +18,12 @@ mat-row {
 .action-buttons {
   padding-right: 5px;
 }
+
+mat-card-title {
+  text-align: center;
+}
+
+.persons {
+  width: 200px;
+  height: auto;
+}

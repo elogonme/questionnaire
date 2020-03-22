@@ -14,13 +14,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { CdkColumnDef } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { PersonListComponent } from './person/person-list/person-list.component';
 import { PersonComponent } from './person/person.component';
 import { PersonFormComponent } from './person/person-form/person-form.component';
-
 
 @NgModule({
   declarations: [
@@ -28,8 +27,8 @@ import { PersonFormComponent } from './person/person-form/person-form.component'
     PersonListComponent,
     PersonComponent,
     PersonFormComponent
-
   ],
+
   imports: [
     BrowserModule,
     FormsModule,
@@ -47,6 +46,7 @@ import { PersonFormComponent } from './person/person-form/person-form.component'
     MatTableModule,
     MatCardModule
   ],
+
   providers: [CdkColumnDef],
   bootstrap: [AppComponent]
 })

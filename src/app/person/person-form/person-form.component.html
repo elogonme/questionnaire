@@ -1,79 +1,87 @@
 <mat-card>
-  <mat-card-title>Person Details</mat-card-title>
 
-  <form #FormValid="ngForm" class="form-container" novalidate>
-    <fieldset class="fieldset-row">
-      <mat-form-field appearance = "outline" hintLabel="Min 3 characters">
-        <mat-label>First Name</mat-label>
-        <input matInput [(ngModel)]="person.firstName" type="text" placeholder="Enter first name" name="firstName" #fName="ngModel" required minlength="3">
-        <mat-error [hidden]="fName.valid && fName.pristine">Please enter name</mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance = "outline" hintLabel="Min 3 characters">
-        <mat-label>Last Name</mat-label>
-        <input matInput [(ngModel)]="person.lastName" type="text" placeholder="Enter last name" name="lastName" #lName="ngModel" required minlength="3">
-        <mat-error [hidden]="lName.valid">Please enter last name</mat-error>
-      </mat-form-field>
-    </fieldset>
-
-    <fieldset>
-      <mat-form-field appearance = "outline" hintLabel="DD/MM/YYYY">
-        <mat-label>Date of birth</mat-label>
-        <input matInput [(ngModel)]="person.dateOfBirth" [matDatepicker]="picker" name="date" #dob="ngModel" required>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-error [hidden]="dob.valid">Please enter Date of Birth</mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance = "outline" hintLabel="Min 10 characters">
-        <mat-label>Phone Number</mat-label>
-        <input matInput [(ngModel)]="person.phoneNumber" type="phone" placeholder="Enter Phone number" name="phoneNumber" #phName="ngModel" required minlength="10" pattern="[0-9]+">
-        <mat-error [hidden]="phName.valid">Please enter phone number</mat-error>
-      </mat-form-field>
-    </fieldset>
-
-    <fieldset class="radio-set">
-      <div class="radio-group">
-        <mat-label class="label" id="gender">Gender</mat-label>
-        <mat-radio-group aria-labelledby="gender" name="pGender" [(ngModel)]="person.gender" required #pGender="ngModel" required>
-          <mat-radio-button color="primary" value="male"> Male </mat-radio-button>
-          <mat-radio-button value="female"> Female </mat-radio-button>
-          <mat-error *ngIf="pGender.hasError('required')" class="error">Gender selection is required.</mat-error>
-        </mat-radio-group>
-      </div>
-
-      <div class="radio-group">
-        <mat-label class="label" id="smoking">Smoking?</mat-label>
-        <mat-radio-group aria-labelledby="smoking" name="pSmoking" [(ngModel)]="person.isSmoking" required #pSmoking="ngModel">
-          <mat-radio-button value="yes"> Yes </mat-radio-button>
-          <mat-radio-button value="no"> No </mat-radio-button>
-          <mat-error *ngIf="pSmoking.hasError('required')" class="error">Select Yes / No</mat-error>
-        </mat-radio-group>
-      </div>
-    </fieldset>
-
-    <fieldset class="education">
-        <mat-form-field appearance = "outline">
-          <mat-label>Education</mat-label>
-          <mat-select name="pEducation" [(ngModel)]="person.educationId" required #pEducation="ngModel">
-            <mat-option *ngFor="let title of educationMap | keyvalue" [value]="title.key"> {{title.value}}</mat-option>
-          </mat-select>
-          <div *ngIf="person.educationId === 0" class="mat-error">You must make a selection</div>
+  <mat-card-header>
+    <mat-card-title>Person Details</mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <form #FormValid="ngForm" class="form-container" novalidate>
+      <fieldset class="fieldset-row">
+        <mat-form-field appearance = "outline" hintLabel="Min 3 characters">
+          <mat-label>First Name</mat-label>
+          <input matInput [(ngModel)]="person.firstName" type="text" placeholder="Enter first name" name="firstName" #fName="ngModel" required minlength="3">
+          <mat-error [hidden]="fName.valid && fName.pristine">Please enter name</mat-error>
         </mat-form-field>
+  
+        <mat-form-field appearance = "outline" hintLabel="Min 3 characters">
+          <mat-label>Last Name</mat-label>
+          <input matInput [(ngModel)]="person.lastName" type="text" placeholder="Enter last name" name="lastName" #lName="ngModel" required minlength="3">
+          <mat-error [hidden]="lName.valid">Please enter last name</mat-error>
+        </mat-form-field>
+      </fieldset>
+  
+      <fieldset>
+        <mat-form-field appearance = "outline" hintLabel="DD/MM/YYYY">
+          <mat-label>Date of birth</mat-label>
+          <input matInput [(ngModel)]="person.dateOfBirth" [matDatepicker]="picker" name="date" #dob="ngModel" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error [hidden]="dob.valid">Please enter Date of Birth</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance = "outline" hintLabel="Min 10 characters">
+          <mat-label>Phone Number</mat-label>
+          <input matInput [(ngModel)]="person.phoneNumber" type="phone" placeholder="Enter Phone number" name="phoneNumber" #phName="ngModel" required minlength="10" pattern="[0-9]+">
+          <mat-error [hidden]="phName.valid">Please enter phone number</mat-error>
+        </mat-form-field>
+      </fieldset>
+  
+      <fieldset class="radio-set">
+        <div class="radio-group">
+          <mat-label class="label" id="gender">Gender</mat-label>
+          <mat-radio-group aria-labelledby="gender" name="pGender" [(ngModel)]="person.gender" required #pGender="ngModel" required>
+            <mat-radio-button color="primary" value="male"> Male </mat-radio-button>
+            <mat-radio-button value="female"> Female </mat-radio-button>
+            <mat-error *ngIf="pGender.hasError('required')" class="error">Gender selection is required.</mat-error>
+          </mat-radio-group>
+        </div>
+  
+        <div class="radio-group">
+          <mat-label class="label" id="smoking">Smoking?</mat-label>
+          <mat-radio-group aria-labelledby="smoking" name="pSmoking" [(ngModel)]="person.isSmoking" required #pSmoking="ngModel">
+            <mat-radio-button value="yes"> Yes </mat-radio-button>
+            <mat-radio-button value="no"> No </mat-radio-button>
+            <mat-error *ngIf="pSmoking.hasError('required')" class="error">Select Yes / No</mat-error>
+          </mat-radio-group>
+        </div>
+      </fieldset>
+  
+      <fieldset class="education">
+          <mat-form-field appearance = "outline">
+            <mat-label>Education</mat-label>
+            <mat-select name="pEducation" [(ngModel)]="person.educationId" required #pEducation="ngModel">
+              <mat-option *ngFor="let title of educationMap | keyvalue" [value]="title.key"> {{title.value}}</mat-option>
+            </mat-select>
+            <div *ngIf="person.educationId === 0" class="mat-error">You must make a selection</div>
+          </mat-form-field>
+  
+          <mat-checkbox class="agree" name="pAgreed" [(ngModel)]="person.isAgreed" required #pAgreed="ngModel"> Agree to terms
+            <mat-error *ngIf="pAgreed.hasError('required')" class="error">Please agree to terms</mat-error>
+          </mat-checkbox>
+      </fieldset>
+  
+      <div class="msg-ok col" id="checkMsg" [ngClass]="validate()">Check completed successfully</div>
+    </form>  
+  </mat-card-content>
 
-        <mat-checkbox class="agree" name="pAgreed" [(ngModel)]="person.isAgreed" required #pAgreed="ngModel"> Agree to terms
-          <mat-error *ngIf="pAgreed.hasError('required')" class="error">Please agree to terms</mat-error>
-        </mat-checkbox>
-    </fieldset>
+  <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="addPerson()" class="submit btn" type="submit" id="submitBtn"
+        [disabled]="!person.validate()">Add
+        <mat-icon class="btn-icon">keyboard_return</mat-icon>
+      </button>
+      <button mat-raised-button color="accent" (click)="clearForm()" class="submit btn" type="submit" id="clearBtn">
+        Clear <mat-icon class="btn-icon">clear_all</mat-icon>
+      </button>
+  </mat-card-actions>
 
-    <div class="msg-ok col" id="checkMsg" [ngClass]="validate()">Check completed successfully</div>
-
-    <button mat-raised-button color="primary" (click)="addPerson()" class="submit btn" type="submit" id="submitBtn"
-      [disabled]="!person.validate()">Add
-      <mat-icon class="btn-icon">keyboard_return</mat-icon>
-    </button>
-    <button mat-raised-button color="accent" (click)="clearForm()" class="submit btn" type="submit" id="clearBtn">
-      Clear <mat-icon class="btn-icon">clear_all</mat-icon>
-    </button>
-  </form>
 </mat-card>

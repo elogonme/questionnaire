@@ -11,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 export class PersonListComponent implements OnChanges {
 
+
   @Input() persons: Person[] = [];
   @Output() personSelected = new EventEmitter<Person>();
   @Output() updateRequired = new EventEmitter<number>();

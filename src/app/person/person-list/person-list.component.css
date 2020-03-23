@@ -3,27 +3,6 @@
   background-color: rgb(238, 238, 238);
 }
 
-mat-cell {
-  display: initial;
-}
-
-mat-header-row {
-  min-height: 30px;
-}
-
-mat-row {
-  min-height: 24px;
-}
-
-.action-buttons {
-  padding-right: 5px;
-}
-
-mat-card-title {
-  text-align: center;
-}
-
-.persons {
-  width: 200px;
-  height: auto;
+.mat-column-name, .mat-column-lastname {
+  min-width: 150px;
 }

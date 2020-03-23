@@ -1,29 +1,8 @@
- .table-header {
-  background-color: gray;
-  color: white;
-}
-
-mat-header-cell {
-  color: white;
-}
-
 .row-selected {
   font-weight: 600;
   background-color: rgb(238, 238, 238);
 }
 
-mat-cell {
-  display: initial;
+.mat-column-name, .mat-column-lastname {
+  min-width: 150px;
 }
-
-mat-header-row {
-  min-height: 30px;
-}
-
-mat-row {
-  min-height: 24px;
-}
-
-
-
-

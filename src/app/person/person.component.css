@@ -1,0 +1,19 @@
+h1 {
+  font-size: xx-large;
+}
+
+.main {
+  justify-content: center;
+  display: flex;
+}
+
+.header {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.header-icon {
+  font-size: 35px !important;
+  margin-right: 15px
+}

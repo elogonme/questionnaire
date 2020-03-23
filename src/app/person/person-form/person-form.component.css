@@ -1,23 +1,3 @@
-.main {
-  background-color: #f0f0f0;
-  text-align: center;
-}
-
-.header {
-  padding-top: 10px;
-  display: flex;
-  justify-content: center;
-}
-
-.header-icon {
-  font-size: 35px !important;
-  margin-right: 15px
-}
-
-h1 {
-  font-size: xx-large;
-}
-
 .form-container {
   display: inline-table;
 }
@@ -151,7 +131,6 @@ mat-form-field {
 
 mat-error {
   font-size: 12px;
-
 }
 
 .mat-error {

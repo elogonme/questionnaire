@@ -1,12 +1,15 @@
 export class Person {
-  firstName = '';
-  lastName = '';
-  dateOfBirth: Date;
-  phoneNumber = '';
-  gender: number | null = null;
-  educationId = 0;
-  isSmoking: boolean | null = null;
-  isAgreed: boolean | null = null;
+
+  constructor(
+    public firstName = '',
+    public lastName = '',
+    public dateOfBirth: Date = null,
+    public phoneNumber = '',
+    public gender: number | null = null,
+    public educationId = 0,
+    public isSmoking: boolean | null = null,
+    public isAgreed: boolean | null = null,
+  ) {}
 
   validate(): boolean {
     return this.firstName.length >= 3

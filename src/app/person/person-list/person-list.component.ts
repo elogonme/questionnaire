@@ -19,7 +19,7 @@ export class PersonListComponent implements OnChanges {
 
   educationMap = EDUCATION_MAP;
   selectedRow = -1;
-  displayedColumns = ['name', 'lastname', 'dateOfBirth', 'phoneNumber', 'gender', 'education', 'smoking', 'actions'];
+  displayedColumns = ['name', 'lastname'];
 
   ngOnChanges(changes: SimpleChanges): void {
     this.personsTable.data = changes.persons.currentValue;

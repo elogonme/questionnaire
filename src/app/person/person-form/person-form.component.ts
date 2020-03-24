@@ -15,7 +15,7 @@ export class PersonFormComponent {
   educationMap = EDUCATION_MAP;
 
   addUpdatePerson(action) {
-      const personAndAction = { person: this.person, action: action };
+      const personAndAction = { person: this.person, action };
       this.personEntered.emit(personAndAction);
       this.person = new Person();
   }

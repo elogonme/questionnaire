@@ -12,8 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class PersonListComponent implements OnChanges {
 
   @Input() persons: Person[] = [];
-  @Output() personSelected = new EventEmitter<Person>();
-  @Output() updateRequired = new EventEmitter<number>();
+  @Output() personSelected = new EventEmitter<any>();
 
   personsTable: MatTableDataSource<Person> = new MatTableDataSource();
 
@@ -23,6 +22,7 @@ export class PersonListComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.personsTable.data = changes.persons.currentValue;
+    this.selectedRow = -1;
   }
 
   deletePerson() {
@@ -44,13 +44,8 @@ export class PersonListComponent implements OnChanges {
 
   selectRow(i: number) {
     this.selectedRow = i;
-    this.personSelected.emit(this.persons[i]);
-  }
-
-  updatePerson() {
-    this.updateRequired.emit(this.selectedRow);
-    this.updateTable();
-    this.selectedRow = -1;
+    const personAndIndex = { person: this.persons[i], index: i }
+    this.personSelected.emit(personAndIndex);
   }
 
   updateTable() {

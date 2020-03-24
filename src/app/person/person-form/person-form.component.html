@@ -70,18 +70,20 @@
           </mat-checkbox>
       </fieldset>
 
-      <div class="msg-ok col" id="checkMsg" [ngClass]="validate()">Check completed successfully</div>
+      <div class="msg-ok" id="checkMsg" [ngClass]="validate()">Check completed successfully</div>
     </form>
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="addPerson()" class="submit btn" type="submit" id="submitBtn"
+    <button mat-raised-button color="primary" (click)="addUpdatePerson(true)" type="submit" id="submitBtn"
       [disabled]="!person.validate()">Add
       <mat-icon class="btn-icon">keyboard_return</mat-icon>
     </button>
-    <button mat-raised-button color="accent" (click)="clearForm()" class="submit btn" type="submit" id="clearBtn">
+    <button mat-raised-button color="accent" (click)="clearForm()" type="submit" id="clearBtn">
       Clear <mat-icon class="btn-icon">clear_all</mat-icon>
     </button>
+    <button button mat-stroked-button color="accent" (click)="addUpdatePerson(false)" class="btn-update" type="submit" id="updateBtn">
+      Update<mat-icon class="btn-icon">refresh</mat-icon></button>
   </mat-card-actions>
 
 </mat-card>

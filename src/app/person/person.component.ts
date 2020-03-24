@@ -19,18 +19,23 @@ export class PersonComponent {
     ];
   educationMap = EDUCATION_MAP;
   personsTable: MatTableDataSource<Person> = new MatTableDataSource<Person>();
+  slectedPersonIndex: number;
 
-  getNewPerson(person: Person) {
-    this.persons.push(person);
-    this.persons = this.persons.slice();
+  getUpdatePerson(person) {
+    if (person.action) {                // Add new person is action is true
+      this.persons.push(person.person);
+      this.persons = this.persons.slice();
+    }
+    else {                             // Update selected person is action is false
+      this.persons.splice(this.slectedPersonIndex, 1, person.person);
+      this.persons = this.persons.slice();
+      this.slectedPersonIndex = -1;
+      this.person = new Person();
+    }
   }
 
-  editPerson(person: Person) {
-    this.person = Object.assign(new Person(), person);
-  }
-
-  updatePerson(personIndex: number) {
-    this.persons.splice(personIndex, 1, this.person);
-    this.person = new Person();
+  editPerson(person: any) {
+    this.person = Object.assign(new Person(), person.person);
+    this.slectedPersonIndex = person.index;
   }
 }

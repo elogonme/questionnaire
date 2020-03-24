@@ -25,8 +25,7 @@ export class PersonComponent {
     if (person.action) {                // Add new person is action is true
       this.persons.push(person.person);
       this.persons = this.persons.slice();
-    }
-    else {                             // Update selected person is action is false
+    } else {                             // Update selected person is action is false
       this.persons.splice(this.slectedPersonIndex, 1, person.person);
       this.persons = this.persons.slice();
       this.slectedPersonIndex = -1;

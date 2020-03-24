@@ -44,7 +44,7 @@ export class PersonListComponent implements OnChanges {
 
   selectRow(i: number) {
     this.selectedRow = i;
-    const personAndIndex = { person: this.persons[i], index: i }
+    const personAndIndex = { person: this.persons[i], index: i };
     this.personSelected.emit(personAndIndex);
   }
 

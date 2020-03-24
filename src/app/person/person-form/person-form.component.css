@@ -47,27 +47,6 @@ mat-form-field {
   height: 68px;
 }
 
-.radio {
-  display: flex;
-}
-.field-error .field-error-message {
-  display: flex;
-}
-
-.field-error .field-input {
-  border: 1px solid red;
-}
-
-.msg {
-  color: red;
-  display: none;
-  padding-left: 10px;
-}
-
-.msg-1 {
-  padding-bottom: 10px;
-}
-
 #checkMsg {
   color: green;
 }
@@ -81,37 +60,8 @@ mat-form-field {
   visibility: visible;
 }
 
-.main-form {
-  width: 650px;
-}
-
-.err-off {
-  display: none;
-}
-
-.err-message {
-  display: flex;
-}
-
-.err-input {
-  border: 1px solid red;
-}
-
 .material-icons {
   font-size: 14px;
-}
-
-.icon-2 {
-  font-size: 20px;
-}
-
-.icon-1 {
-  font-size: 40px;
-  padding-right: 5px;
-}
-
-.heading {
-  justify-content: center;
 }
 
 .agree {
@@ -124,15 +74,23 @@ mat-form-field {
   padding-top: 5px;
 }
 
-.btn {
-  margin-left: 20px;
-  margin-bottom: 10px;
-}
-
 mat-error {
   font-size: 12px;
 }
 
 .mat-error {
   font-size: 12px;
+}
+
+.btn-update {
+  margin-left: 0px !important;
+  padding-right: 6px;
+}
+
+mat-card-actions {
+  padding-left: 10px;
+}
+
+mat-card-content {
+  margin-bottom: 0px;
 }

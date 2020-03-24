@@ -4,6 +4,6 @@
 </div>
 
 <div class="main">
-    <app-person-list (personSelected)="editPerson($event)" [persons]="persons" (updateRequired)="updatePerson($event)" class="person-list"></app-person-list>
-    <app-person-form (personEntered)="getNewPerson($event)" [person]="person"></app-person-form>
+    <app-person-list (personSelected)="editPerson($event)" [persons]="persons" class="person-list"></app-person-list>
+    <app-person-form (personEntered)="getUpdatePerson($event)" [person]="person"></app-person-form>
 </div>

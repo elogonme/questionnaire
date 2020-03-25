@@ -36,6 +36,6 @@ export class PersonFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.person = this.personsService.getPerson();
+    this.person =  new Person();
   }
 }

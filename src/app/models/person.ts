@@ -1,6 +1,7 @@
 export class Person {
 
   constructor(
+    public id = '',
     public firstName = '',
     public lastName = '',
     public dateOfBirth: Date = null,

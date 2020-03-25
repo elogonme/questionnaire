@@ -19,17 +19,19 @@ export class PersonListComponent implements OnChanges, OnInit {
   educationMap = EDUCATION_MAP;
   selectedRow = -1;
   displayedColumns = ['name', 'lastname'];
-  // persons: Person[];
-  persons$: Observable<Person[]>;
+  persons: Person[];
 
-  constructor(private personsService: PersonsService) {
-  }
+  constructor(
+    private personsService: PersonsService,
+  ) {}
 
   ngOnInit() {
-    // this.personsService.getAllPersons.subscribe(persons => this.persons = persons);
-
-    this.persons$ = this.personsService.getAllPersons();
-    this.personsTable.data = this.persons$;
+    this.personsService.getAllPersons().subscribe(
+      persons => {
+        this.persons = persons;
+        this.personsTable.data = persons;
+    }
+    );
   }
 
   ngOnChanges(changes: SimpleChanges): void {

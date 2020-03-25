@@ -1,7 +1,9 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { Person } from '../../models/person';
 import { EDUCATION_MAP } from '../../models/person';
 import { MatTableDataSource } from '@angular/material/table';
+import { PersonsService } from 'src/app/persons.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-person-list',
@@ -9,16 +11,26 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./person-list.component.css']
 })
 
-export class PersonListComponent implements OnChanges {
+export class PersonListComponent implements OnChanges, OnInit {
 
-  @Input() persons: Person[] = [];
-  @Output() personSelected = new EventEmitter<any>();
+  @Output() personSelected = new EventEmitter<object>();
 
   personsTable: MatTableDataSource<Person> = new MatTableDataSource();
-
   educationMap = EDUCATION_MAP;
   selectedRow = -1;
   displayedColumns = ['name', 'lastname'];
+  // persons: Person[];
+  persons$: Observable<Person[]>;
+
+  constructor(private personsService: PersonsService) {
+  }
+
+  ngOnInit() {
+    // this.personsService.getAllPersons.subscribe(persons => this.persons = persons);
+
+    this.persons$ = this.personsService.getAllPersons();
+    this.personsTable.data = this.persons$;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.personsTable.data = changes.persons.currentValue;

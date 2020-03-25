@@ -15,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
 import { CdkColumnDef } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { PersonsService } from './persons.service';
 
 import { AppComponent } from './app.component';
 import { PersonListComponent } from './person/person-list/person-list.component';
@@ -47,7 +48,9 @@ import { PersonFormComponent } from './person/person-form/person-form.component'
     MatCardModule
   ],
 
-  providers: [CdkColumnDef],
+  providers: [
+    CdkColumnDef
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

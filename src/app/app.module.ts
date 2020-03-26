@@ -45,11 +45,12 @@ import { PersonFormComponent } from './person/person-form/person-form.component'
     MatRadioModule,
     MatCheckboxModule,
     MatTableModule,
-    MatCardModule
+    MatCardModule,
   ],
 
   providers: [
-    CdkColumnDef
+    CdkColumnDef,
+    PersonsService,
   ],
   bootstrap: [AppComponent]
 })

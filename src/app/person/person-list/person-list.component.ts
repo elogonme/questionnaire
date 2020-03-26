@@ -1,9 +1,8 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { Person } from '../../models/person';
 import { EDUCATION_MAP } from '../../models/person';
 import { MatTableDataSource } from '@angular/material/table';
 import { PersonsService } from 'src/app/persons.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-person-list',
@@ -13,26 +12,33 @@ import { Observable } from 'rxjs';
 
 export class PersonListComponent implements OnChanges, OnInit {
 
-  @Output() personSelected = new EventEmitter<object>();
-
   personsTable: MatTableDataSource<Person> = new MatTableDataSource();
   educationMap = EDUCATION_MAP;
   selectedRow = -1;
   displayedColumns = ['name', 'lastname'];
-  // persons: Person[];
-  persons$: Observable<Person[]>;
+  persons: Person[];
+  person: Person;
 
-  constructor(private personsService: PersonsService) {
-  }
+  constructor(private personsService: PersonsService,
+  ) {}
 
   ngOnInit() {
-    // this.personsService.getAllPersons.subscribe(persons => this.persons = persons);
+    this.personsService.getAllPersons().subscribe(
+      persons => {
+      this.persons = persons;
+      this.personsTable.data = persons;
+      this.selectedRow = -1;
+    });
 
-    this.persons$ = this.personsService.getAllPersons();
-    this.personsTable.data = this.persons$;
+    this.personsService.getPerson().subscribe(
+      person => {
+      this.person = person;
+      console.log(this.person);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log('changed');
     this.personsTable.data = changes.persons.currentValue;
     this.selectedRow = -1;
   }
@@ -56,12 +62,12 @@ export class PersonListComponent implements OnChanges, OnInit {
 
   selectRow(i: number) {
     this.selectedRow = i;
-    const personAndIndex = { person: this.persons[i], index: i };
-    this.personSelected.emit(personAndIndex);
+    const returnedPerson  = this.personsService.getPersonById((this.persons[i].id));
+    this.person = returnedPerson.value;
   }
 
   updateTable() {
     this.personsTable.data = this.persons;
-    this.personSelected.emit(new Person());
+    // this.personSelected.emit(new Person());
   }
 }

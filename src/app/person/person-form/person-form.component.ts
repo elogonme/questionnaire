@@ -20,10 +20,8 @@ export class PersonFormComponent implements OnInit {
   addUpdatePerson(action) {
     if (action) {                // Add new person if action is true
       this.personsService.addPerson(this.person);
-      this.person = new Person();
     } else {                             // Update selected person if action is false
       this.personsService.updatePerson(this.person);
-      this.person = new Person();
     }
   }
 
@@ -36,6 +34,10 @@ export class PersonFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.person = this.personsService.getPerson();
+    this.personsService.getPerson().subscribe(
+      person => {
+      this.person = person;
+    }
+    );
   }
 }

@@ -11,18 +11,6 @@ import { PersonsService } from '../persons.service';
 })
 
 export class PersonComponent {
-  educationMap = EDUCATION_MAP;
-  personsTable: MatTableDataSource<Person> = new MatTableDataSource<Person>();
-  slectedPersonIndex: number;
-  personsService: PersonsService;
-  person: Person = new Person();
 
-  constructor(personsService: PersonsService) {
-    this.personsService = personsService;
-  }
-
-  editPerson(person) {
-    this.person = Object.assign(new Person(), person.person);
-    this.slectedPersonIndex = person.index;
-  }
+  constructor(personsService: PersonsService) {}
 }

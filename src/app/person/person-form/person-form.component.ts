@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Person } from '../../models/person';
 import { EDUCATION_MAP } from '../../models/person';
 import { PersonsService } from 'src/app/persons.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-person-form',
@@ -12,7 +11,7 @@ import { Observable } from 'rxjs';
 export class PersonFormComponent implements OnInit {
 
   educationMap = EDUCATION_MAP;
-  person: Person;
+  person: Person = new Person();
 
   constructor(private personsService: PersonsService) {
   }
@@ -34,10 +33,9 @@ export class PersonFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.personsService.getPerson().subscribe(
+    this.personsService.person.subscribe(
       person => {
       this.person = person;
-    }
-    );
+    });
   }
 }

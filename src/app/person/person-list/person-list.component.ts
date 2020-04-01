@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Person } from '../../models/person';
 import { EDUCATION_MAP } from '../../models/person';
 import { MatTableDataSource } from '@angular/material/table';
-import { PersonsService } from 'src/app/persons.service';
 
 @Component({
   selector: 'app-person-list',
@@ -10,31 +9,25 @@ import { PersonsService } from 'src/app/persons.service';
   styleUrls: ['./person-list.component.css']
 })
 
-export class PersonListComponent implements OnInit {
+export class PersonListComponent implements OnChanges {
+
+  @Input() persons: Person[] = [];
+  @Output() personSelected = new EventEmitter<any>();
 
   personsTable: MatTableDataSource<Person> = new MatTableDataSource();
+
   educationMap = EDUCATION_MAP;
   selectedRow = -1;
   displayedColumns = ['name', 'lastname'];
-  persons: Person[];
 
-  constructor(private personsService: PersonsService,
-  ) {}
-
-  ngOnInit() {
-    this.personsService.persons.subscribe(
-      persons => {
-      this.persons = persons;
-      this.personsTable.data = persons;
-      this.selectedRow = -1;
-    });
+  ngOnChanges(changes: SimpleChanges): void {
+    this.personsTable.data = changes.persons.currentValue;
+    this.selectedRow = -1;
   }
 
   deletePerson() {
     this.persons.splice(this.selectedRow, 1);
-    this.selectedRow = -1;
     this.updateTable();
-    this.personsService.updateObservables();
   }
 
   moveRow(shift: number) {
@@ -44,17 +37,18 @@ export class PersonListComponent implements OnInit {
     }
 
     this.persons.splice(this.selectedRow + shift, 0, this.persons.splice(this.selectedRow, 1)[0]);
-    this.selectedRow = -1;
     this.updateTable();
-    this.personsService.updateObservables();
 }
 
   selectRow(i: number) {
     this.selectedRow = i;
-    this.personsService.person.next(Object.assign(new Person(), this.persons[i]));
+    const personAndIndex = { person: this.persons[i], index: i };
+    this.personSelected.emit(personAndIndex);
   }
 
   updateTable() {
     this.personsTable.data = this.persons;
+    this.personSelected.emit(new Person());
+    this.selectedRow = -1;
   }
 }

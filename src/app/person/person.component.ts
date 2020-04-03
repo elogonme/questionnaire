@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { Person } from '../models/person';
-import { EDUCATION_MAP } from '../models/person';
 import { PersonService } from '../person.service';
 
 @Component({
@@ -11,38 +9,70 @@ import { PersonService } from '../person.service';
 })
 
 export class PersonComponent implements OnInit {
-  person: Person = new Person();
-  persons: Person[];
-  educationMap = EDUCATION_MAP;
-  personsTable: MatTableDataSource<Person> = new MatTableDataSource<Person>();
-  slectedPersonIndex: number;
+
+  person: Person = new Person(); // this is data for PersonFormComponent
+  persons: Person[] = []; // this is data for PersonListComponent
 
   constructor(private personService: PersonService) {}
 
   ngOnInit() {
-    this.personService.getAllPersons();
-    this.personService.persons.subscribe(
-      persons => {
-      this.persons = persons;
-      this.personsTable.data = persons;
-    });
+    this.getAllPersons();
   }
 
-  addUpdatePerson(person) {
-    if (person.action) {                // Add new person is action is true
-      this.personService.addPerson(this.person);
-      this.persons = this.persons.slice();
-    } else {                             // Update selected person is action is false
-      this.personService.updatePerson(this.person);
-      this.persons = this.persons.slice();
-      this.slectedPersonIndex = -1;
-      this.person = new Person();
-    }
+  getAllPersons(): void {
+    this.personService.getAllPersons().subscribe(
+      persons => this.persons = persons,
+      err => console.error(`Can not get all persons. error ${err}`),
+      () => console.log(`List of persons retrieved. length=${this.persons.length}`)
+    );
   }
 
-  editPerson(person: any) {
-    this.person = Object.assign(new Person(), person.person);
-    this.slectedPersonIndex = person.index;
-    this.personService.updateObservables();
+  // event handler for PersonFormComponent
+  addPerson(person: Person): void {
+    let newId = '';
+    this.personService.addPerson(person).subscribe(
+      p => {
+        newId = p.id;
+        this.person = new Person();
+        this.getAllPersons();
+      },
+      err => console.error(`Can not add person. error ${err}`),
+      () => console.log(`Person added successfully. id=${newId}`)
+    );
   }
+
+  // event handler for PersonFormComponent
+  updatePerson(person: Person): void {
+    this.personService.updatePerson(person).subscribe(
+      result => {
+        if (result) {
+          this.person = new Person();
+          this.getAllPersons();
+        } else {
+          console.error(`Can not update person. id=${person.id}`);
+        }
+      },
+      err => console.error(`Service error ${err}`),
+      () => console.log(`Person updated successfully. id=${person.id}`)
+    );
+  }
+
+  deletePerson(person: Person): void {
+    this.personService.deletePersonById(person.id).subscribe(
+      result => {
+        if (result) {
+          this.getAllPersons();
+        } else {
+          console.error(`Can not delete person. id=${person.id}`);
+        }
+      },
+      err => console.error(`Service error ${err}`),
+      () => console.log(`Person deleted successfully. id=${this.person.id}`)
+    );
+  }
+
+  selectPerson(person: Person): void {
+    this.person = person.clone();
+  }
+
 }

@@ -12,10 +12,10 @@ import { MatTableDataSource } from '@angular/material/table';
 export class PersonListComponent implements OnChanges {
 
   @Input() persons: Person[] = [];
-  @Output() personSelected = new EventEmitter<any>();
+  @Output() selectPersonEvent = new EventEmitter<Person>();
+  @Output() deletePersonEvent = new EventEmitter<Person>();
 
   personsTable: MatTableDataSource<Person> = new MatTableDataSource();
-
   educationMap = EDUCATION_MAP;
   selectedRow = -1;
   displayedColumns = ['name', 'lastname'];
@@ -26,29 +26,12 @@ export class PersonListComponent implements OnChanges {
   }
 
   deletePerson() {
-    this.persons.splice(this.selectedRow, 1);
-    this.updateTable();
+    this.deletePersonEvent.emit(this.persons[this.selectedRow]);
   }
-
-  moveRow(shift: number) {
-
-    if (this.selectedRow + shift < 0 || this.selectedRow + shift > this.persons.length - 1) {
-      return;
-    }
-
-    this.persons.splice(this.selectedRow + shift, 0, this.persons.splice(this.selectedRow, 1)[0]);
-    this.updateTable();
-}
 
   selectRow(i: number) {
     this.selectedRow = i;
-    const personAndIndex = { person: this.persons[i], index: i };
-    this.personSelected.emit(personAndIndex);
+    this.selectPersonEvent.emit(this.persons[i]);
   }
 
-  updateTable() {
-    this.personsTable.data = this.persons;
-    this.personSelected.emit(new Person());
-    this.selectedRow = -1;
-  }
 }

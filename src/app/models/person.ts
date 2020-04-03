@@ -22,6 +22,11 @@ export class Person {
       && !!this.isSmoking
       && !!this.isAgreed;
   }
+
+  clone(): Person {
+    return Object.assign(new Person(), this);
+  }
+
 }
 
 export const EDUCATION_MAP = new Map<number, string>([

@@ -75,14 +75,14 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="addUpdatePerson(true)" type="submit" id="submitBtn"
+    <button mat-raised-button color="primary" (click)="addPerson()" type="submit" id="submitBtn"
       [disabled]="!person.validate()">Add
       <mat-icon class="btn-icon">keyboard_return</mat-icon>
     </button>
     <button mat-raised-button color="accent" (click)="clearForm()" type="submit" id="clearBtn">
       Clear <mat-icon class="btn-icon">clear_all</mat-icon>
     </button>
-    <button button mat-stroked-button color="accent" (click)="addUpdatePerson(false)" class="btn-update" type="submit" id="updateBtn">
+    <button button mat-stroked-button color="accent" (click)="updatePerson()" class="btn-update" type="submit" id="updateBtn">
       Update<mat-icon class="btn-icon">refresh</mat-icon></button>
   </mat-card-actions>
 

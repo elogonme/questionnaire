@@ -17,7 +17,6 @@ export class PersonService {
   private personsData: Person[] = [];
 
   constructor() {
-
     this.v1options.msecs = new Date('2011-11-01').getTime(),
     this.personsData.push(new Person(uuidv1(this.v1options), 'John', 'Brown', new Date('Jan 15, 1990'), '647 647 6464', 0, 2, true));
     this.v1options.msecs = new Date('2011-11-02').getTime(),
@@ -66,12 +65,13 @@ export class PersonService {
     return of(true);
   }
 
-  shiftPerson(personIdAndShift): Observable<boolean>  {
+  shiftPerson(personIndexAndShift): Observable<boolean>  {
     // shift person in the table and return true if person was found and moved or false if shift is not possible
-    if (personIdAndShift.id + personIdAndShift.shift < 0 || personIdAndShift.id + personIdAndShift.shift > this.personsData.length - 1) {
+    const newIndex = personIndexAndShift.index + personIndexAndShift.shift;
+    if (newIndex < 0 || newIndex > this.personsData.length - 1) {
       return of(false);
     }
-    this.personsData.splice(personIdAndShift.id + personIdAndShift.shift, 0, this.personsData.splice(personIdAndShift.id, 1)[0]);
+    this.personsData.splice(newIndex, 0, this.personsData.splice(personIndexAndShift.index, 1)[0]);
     return of(true);
   }
 

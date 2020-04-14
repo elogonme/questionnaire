@@ -35,7 +35,7 @@ export class PersonListComponent implements OnChanges {
     if (this.selectedRow + shift < 0 || this.selectedRow + shift > this.persons.length - 1) {
       return;
     }
-    this.shiftPersonEvent.emit({ id: this.selectedRow, shift });
+    this.shiftPersonEvent.emit({ index: this.selectedRow, shift });
     this.selectedRow = -1;
   }
 

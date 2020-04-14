@@ -82,17 +82,17 @@ export class PersonComponent implements OnInit {
     this.person = person.clone();
   }
 
-  shiftPerson(personIdAndshift) {
-    this.subscription = this.personService.shiftPerson(personIdAndshift).subscribe(
+  shiftPerson(personIndexAndshift) {
+    this.subscription = this.personService.shiftPerson(personIndexAndshift).subscribe(
       result => {
         if (result) {
           this.getAllPersons();
         } else {
-          console.error(`Can not shift person. id=${this.persons[personIdAndshift.id].id}`);
+          console.error(`Can not shift person. id=${this.persons[personIndexAndshift.index].id}`);
         }
       },
       err => console.error(`Service error ${err}`),
-      () => console.log(`Person moved successfully. id=${this.persons[personIdAndshift.id].id}`)
+      () => console.log(`Person moved successfully. id=${this.persons[personIndexAndshift.index].id}`)
     );
     this.subscription.unsubscribe();
     this.person = new Person();

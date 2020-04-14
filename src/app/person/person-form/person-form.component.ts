@@ -10,25 +10,25 @@ import { EDUCATION_MAP } from '../../models/person';
 export class PersonFormComponent {
 
   @Input() person: Person;
-  @Output() personEntered = new EventEmitter<any>();
+  @Output() addPersonEvent = new EventEmitter<Person>();
+  @Output() updatePersonEvent = new EventEmitter<Person>();
 
   educationMap = EDUCATION_MAP;
 
-  addUpdatePerson(action) {
-      const personAndAction = { person: this.person, action };
-      this.personEntered.emit(personAndAction);
-      this.person = new Person();
+  clearForm() {
+    this.person = new Person();
+  }
+
+  addPerson() {
+    this.addPersonEvent.emit(this.person);
   }
 
   updatePerson() {
-
+    this.updatePersonEvent.emit(this.person);
   }
 
   validate() {
     return {'msg-ok-on': this.person.validate()};
   }
 
-  clearForm() {
-    this.person = new Person();
-  }
 }

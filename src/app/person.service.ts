@@ -32,7 +32,8 @@ export class PersonService {
 
   getPersonById(id: string): Observable<Person | null> {
     // find person by id in the table and return it or null if not found
-    const person = this.personsData.find(p => p.id === id);
+    let person = this.personsData.find(p => p.id === id);
+    person = person.clone();
     return of(person ? person : null);
   }
 

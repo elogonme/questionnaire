@@ -16,11 +16,22 @@ import { CdkColumnDef } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { PersonService } from './person.service';
+import { Route, Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { PersonListComponent } from './person/person-list/person-list.component';
 import { PersonComponent } from './person/person.component';
 import { PersonFormComponent } from './person/person-form/person-form.component';
+
+const fallbackRoute: Route = { path: '**', component: PersonComponent };
+
+const appRoutes: Routes = [
+  { path: '', component: PersonComponent },
+  { path: 'person', component: PersonFormComponent },
+  fallbackRoute
+];
+
+export const routes: Routes = [];
 
 @NgModule({
   declarations: [
@@ -45,7 +56,8 @@ import { PersonFormComponent } from './person/person-form/person-form.component'
     MatRadioModule,
     MatCheckboxModule,
     MatTableModule,
-    MatCardModule
+    MatCardModule,
+    RouterModule.forRoot(appRoutes)
   ],
 
   providers: [

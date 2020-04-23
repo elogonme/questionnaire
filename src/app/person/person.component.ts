@@ -30,38 +30,6 @@ export class PersonComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  // event handler for PersonFormComponent
-  addPerson(person: Person): void {
-    let newId = '';
-    this.subscription = this.personService.addPerson(person).subscribe(
-      p => {
-        newId = p.id;
-        this.person = new Person();
-        this.getAllPersons();
-      },
-      err => console.error(`Can not add person. error ${err}`),
-      () => console.log(`Person added successfully. id=${newId}`)
-    );
-    this.subscription.unsubscribe();
-  }
-
-  // event handler for PersonFormComponent
-  updatePerson(person: Person): void {
-    this.subscription = this.personService.updatePerson(person).subscribe(
-      result => {
-        if (result) {
-          this.person = new Person();
-          this.getAllPersons();
-        } else {
-          console.error(`Can not update person. id=${person.id}`);
-        }
-      },
-      err => console.error(`Service error ${err}`),
-      () => console.log(`Person updated successfully. id=${person.id}`)
-    );
-    this.subscription.unsubscribe();
-  }
-
   deletePerson(person: Person): void {
     this.subscription = this.personService.deletePersonById(person.id).subscribe(
       result => {

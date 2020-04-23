@@ -41,14 +41,22 @@
         <mat-cell *matCellDef="let i" >{{i.isSmoking}}</mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+        <mat-cell *matCellDef="let i" >
+          <button mat-icon-button title="Edit" (click)="editPerson(i.id)"><mat-icon color="primary">edit</mat-icon></button>
+        </mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns" class="table-header"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns; index as i" (click)="selectRow(i)" [ngClass]="{'row-selected': (i === selectedRow) }"></mat-row>
     </mat-table>
   </mat-card-content>
 
   <mat-card-actions class="action-buttons">
-    <button mat-icon-button (click)="moveRow(-1)"><mat-icon color="primary">arrow_upward</mat-icon></button>
-    <button mat-icon-button (click)="moveRow(1)"><mat-icon color="accent">arrow_downward</mat-icon></button>
-    <button mat-icon-button (click)="deletePerson()" [disabled]="selectedRow === -1"><mat-icon color="warn">close</mat-icon></button>
+    <button mat-icon-button title="Move up" (click)="moveRow(-1)"><mat-icon color="primary">arrow_upward</mat-icon></button>
+    <button mat-icon-button title="Move down" (click)="moveRow(1)"><mat-icon color="accent">arrow_downward</mat-icon></button>
+    <button mat-icon-button title="Delete" (click)="deletePerson()" [disabled]="selectedRow === -1"><mat-icon color="warn">close</mat-icon></button>
+    <button mat-icon-button title="Create New" (click)="editPerson('new')"><mat-icon color="primary">note_add</mat-icon></button>
   </mat-card-actions>
 </mat-card>
